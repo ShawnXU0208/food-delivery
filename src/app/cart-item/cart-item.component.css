@@ -1,0 +1,41 @@
+.cart-item{
+  height: 70px;
+  margin: 15px 0px;
+}
+
+.cart-item .row{
+  height: 100%;
+}
+
+.cart-item img{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background-color: #eeeff0;
+  width: 70px;
+  height: 70px;
+}
+
+.cart-item .cart-item-text{
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.cart-item .name{
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.cart-item .price{
+  font-size: 12px;
+  font-weight: 300;
+  color: grey;
+}
+
+.cart-item .category, .cart-item .item-number{
+  font-size: 10px;
+  font-weight: 300;
+  color: grey;
+}

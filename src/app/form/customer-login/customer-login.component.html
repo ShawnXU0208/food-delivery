@@ -1,0 +1,39 @@
+<app-header></app-header>
+
+<div class = "background">
+  <div class = "form container">
+    <div class = "row no-gutters">
+      <app-form-side class = "col-12 col-md-4"></app-form-side>
+
+      <form [formGroup] = "customerLoginForm" (ngSubmit)="onSubmit(customerLoginForm.value)" class = "col-12 col-md-8 form-body">
+        
+        <div class = "second-link small">
+          not a member?
+          <a routerLink = "/register">Sign Up</a>
+        </div>
+
+        <div class = "font-weight-bolder mb-2" style = "font-size: 20px;">Sign In to Shawn's delivery</div>
+
+        <hr>
+
+        <div class="form-group">
+          <label for="first Name" class = "font-weight-bold small">First Name</label>
+          <input type="firstName" class="form-control" id="firstName" formControlName = "firstName">
+        </div>
+
+        <div class="form-group">
+          <label for="email" class = "font-weight-bold small">Email Address</label>
+          <input type="email" class="form-control" id="email" formControlName = "email">
+        </div>
+
+
+        <div class="form-group">
+          <label for="password" class = "font-weight-bold small">Password</label>
+          <input type="password" class="form-control" id="password" formControlName = "password">
+        </div>
+
+        <button type="submit" class="btn btn-success mt-5">Sign In</button>
+      </form>
+    </div>
+  </div>
+</div>

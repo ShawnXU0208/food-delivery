@@ -1,0 +1,42 @@
+<div class = "home mb-3">
+	<app-header></app-header>
+
+	<div class = "hero-text">
+		Your Favorite Food,<br>
+		Delivered with Uber.
+	</div>	
+
+	<div class = "nearby-panel">
+	  
+
+		<label for = "post-code" class = "small">
+			Enter your post code to find local restaurants
+		</label>
+
+		<div class = "input-group mb-2">
+			<input type="text" class="form-control input-sm" id = "post-code" placeholder="e.g. 8041" aria-describedby="address input">
+			<div class="input-group-append ml-3">
+				<button class="btn btn-primary" type="button">Search</button>
+			</div>
+		</div>
+
+		<p class = "small font-weight-lighter mb-0"><a href = "#">log in</a> for your recent address</p>
+
+	</div>
+
+</div>
+
+<div class = "restuarants-list container-fluid">
+
+	<p class = "font-weight-bold sub-title">Popular food near you</p>
+	<hr>
+
+	<div class = "pupular-list row">
+
+		<div *ngFor = "let restuarant of restuarants; index as restuarantId" class = "col-12 col-sm-12 col-md-6 col-lg-4">
+			<app-restuarant-item [restuarant] = "restuarant"></app-restuarant-item>
+		</div>	
+	</div>
+	
+</div>
+

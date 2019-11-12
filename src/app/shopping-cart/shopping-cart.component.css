@@ -1,0 +1,93 @@
+
+
+.cart{
+  padding: 25px 10px 80px 10px;
+  width: 100%;
+  background-color: white;
+  margin-top: 0px;
+  position: relative;
+}
+
+
+.delivery-fee{
+  height: 70px;
+  margin: 15px 0px;
+}
+
+.delivery-fee .row{
+  height: 100%;
+}
+
+
+.delivery-fee .name{
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.cart-item .price{
+  font-size: 12px;
+  font-weight: 300;
+  color: grey;
+}
+
+
+.delivery-fee img{
+  background-color: #faf2dc;
+  width: 55px;
+  height: 55px;
+  padding: 20%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+
+.delivery-fee .name, .delivery-fee .item-price{
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.conclusion{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 30px;
+}
+
+.cart-button{
+  background-color: #de85bd;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 16px;
+  width: 90%;
+  position: absolute;
+  font-weight: 400;
+}
+
+.next-btn{
+  left: 50%;
+  bottom: 0px;
+  transform: translate(-50%, 0%);
+}
+
+.clear-btn{
+  background-color: #9ea1a1;
+  bottom: 50px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+
+
+
+
+
+
+
+
+

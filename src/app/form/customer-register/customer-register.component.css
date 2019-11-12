@@ -1,0 +1,42 @@
+
+
+.background{
+  width: 100%;
+  padding: 10% 5%;
+  background: rgb(241,205,129);
+  background: linear-gradient(31deg, rgba(241,205,129,1) 39%, rgba(215,151,222,1) 65%);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.form{
+  max-width: 1000px;
+}
+
+.form-body{
+  width: 100%;
+  background-color: white;
+  padding: 10%;
+  padding-top: 15%;
+  position: relative;
+}
+
+.second-link{
+  position: absolute;
+  top: 2%;
+  right: 4%;
+}
+
+@media only screen and (max-width: 768px){
+  .background{
+    padding: 5% 2%;
+  }
+}
+
+@media only screen and (max-width: 576px){
+  .background{
+    padding: 5% 1%;
+  }
+}

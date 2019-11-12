@@ -1,0 +1,32 @@
+<div class = "container menu-item">
+  <div class = "row">
+    <div class = "col-md-6 col-12 item-right">
+      <img [src] = "'../../assets/images/' + menuItem.image">
+    </div>
+
+    <div class = "col-md-6 col-12">
+      <div class = "item-name">{{menuItem.name}}</div>
+      <hr>
+      <div class = "item-price small mb-3">{{menuItem.price | currency}}</div>
+      <div class = "item-description small mb-3">{{menuItem.description}}</div>
+
+      <div class = "item-add">
+        <div class = "number-selector inside-box">
+          <div class = "small mb-3">How many would you like</div>
+          <div class = "mt-3">
+            <button class = "minus-btn" (click) = "minus()"><i class="fas fa-minus"></i></button>
+            <input type = "number" [(ngModel)] = "numberToAdd" class = "number-input" readonly />
+            <button class = "plus-btn" (click) = "plus()"><i class="fas fa-plus"></i></button>
+          </div>
+        </div>
+        <div class = "buttons inside-box" 
+        style = "display: flex; flex-direction: column; justify-content: space-between;">
+          <button type = "button" class = "btn btn-outline-primary" (click) = "addToCart()">Add</button>
+          <button type = "button" class = "btn btn-outline-danger" (click) = "removeFromCart()">remove all</button>
+        </div>
+      </div>
+
+      <hr>
+    </div>
+  </div>
+</div>

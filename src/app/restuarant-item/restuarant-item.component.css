@@ -1,0 +1,31 @@
+ a, a:hover, a:focus, a:active {
+      text-decoration: none;
+      color: inherit;
+ }
+
+.restuarant-item{
+  display: block;
+	width: 90%;
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 10px;
+  text-decoration: none;
+}
+
+.restuarant-item img{
+	width: 100%;
+	max-width: 380px;
+	height: 200px;
+	margin: auto;
+}
+
+.restuarant-item p{
+	margin: 0px;
+}
+
+@media only screen and (max-width: 768px){
+	.restuarant-item{
+		width: 80%;
+		margin: auto;
+	}
+}

@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-md navbar-light">
+  <a class="navbar-brand" href = "#">
+    <img [src] = "logoImgSrc">
+  </a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navBtns" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navBtns">
+    <ul class="navbar-nav ml-auto" *ngIf = "islogged == false; else loggedHeader">
+      <li class="nav-item">
+        <a class="nav-link" routerLink = "/register">
+          <i class="fas fa-user"></i> Log in{{isLogged}}
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href = "#">
+          <i class="fas fa-car"></i> become a driver
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="fas fa-handshake"></i> join us
+        </a>
+      </li>
+    </ul>
+
+    <ng-template #loggedHeader>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink = "/register">
+            <i class="fas fa-user"></i>{{firstName}}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href = "#">
+            <i class="fas fa-car"></i> become a driver
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="fas fa-handshake"></i> join us
+          </a>
+        </li>
+      </ul>
+    </ng-template>
+  </div>
+
+</nav>

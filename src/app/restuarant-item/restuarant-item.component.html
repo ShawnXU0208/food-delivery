@@ -1,0 +1,6 @@
+<a class = "restuarant-item" routerLink = "/restuarant/{{restuarant.id}}">
+	<img [src] = "'../../assets/images/' + restuarant.image">
+	<p class = "font-weight-bold">{{restuarant.name}}</p>
+	<p class = "small">{{restuarant.deliverFee | currency}}</p>
+	<p class = "small font-weight-light">{{restuarant.tags}}</p>
+</a>

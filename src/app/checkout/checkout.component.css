@@ -1,0 +1,89 @@
+.background{
+  width: 100%;
+  padding: 10% 5%;
+  background: rgb(241,205,129);
+  background: linear-gradient(31deg, rgba(241,205,129,1) 39%, rgba(215,151,222,1) 65%);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.checkout-body{
+  max-width: 1000px;
+  min-height: 600px;
+}
+
+.cart-table{
+  background-color: white;
+  min-height: 600px;
+  padding: 50px;
+}
+
+.cart-table img{
+  width: 80px;
+  height: 80px;
+  background-color: #f1cd81;
+}
+
+.cart-table tr{
+  padding: 20px 0px;
+}
+
+.cart-table th{
+  text-align: center;
+  font-size: 12px;
+  font-weight: 400;
+  color: grey;
+}
+
+.cart-table td{
+  text-align: center;
+  font-weight: 600;
+}
+
+.checkout-side{
+  background-color: #f1cd81;
+  padding: 70px 50px 0px 50px;
+}
+
+.checkout-side hr{
+  border: 2px solid black;
+  margin-bottom: 30%;
+}
+
+.checkout-side .total-price{
+  color: black;
+  font-size: 25px;
+  margin-left: 10%;
+}
+
+.checkout-btn{
+  padding: 20px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+  border-radius: 30px;
+  font-weight: 500;
+  font-size: 15px;
+  width: 150px;
+  height: 60px;
+  margin: 10px 0px;
+}
+
+.checkout-btn.confirm{
+  color: white;
+  border: none;
+  background-color: black;
+  margin-top: 70%;
+}
+
+.checkout-btn.cancel{
+  color: black;
+  border: 2px solid black;
+  background-color: white;
+}
+
+
+

@@ -1,0 +1,31 @@
+<div class = "cart">
+
+  <div style = "font-size: 25px; font-weight: 500; margin-left: 4%;">Cart</div>
+
+  <div id = "product-items" *ngIf = "cartItemInfo" [innerHTML] = "cartItemInfo.html | noSanitize"></div>
+
+  <div class = "container delivery-fee mt-3">
+    <div class = "row">
+      <div class = "col-3 icon">
+        <img src = '../../assets/images/icon-car.png'>
+      </div>
+      <div class = "col-6">
+        <div class = "name">Delivery Fee</div>
+      </div>
+      <div class = "col-3">
+        <div class = "item-price">$6.99</div>
+      </div>
+    </div>
+  </div>
+
+  <div class = "conclusion">
+    <div style = "font-size: 20px; line-height: 50px;">Total</div>
+    <div style = "font-size: 30px; font-weight: 500;" *ngIf = "cartItemInfo; else defaultPrice">{{cartItemInfo.total_price | currency}}</div>
+    <ng-template #defaultPrice>
+      <div style = "font-size: 30px; font-weight: 500;">$6.99</div>
+    </ng-template>
+  </div>
+
+  <button class="cart-button clear-btn" (click) = "clearCart()">Clear Cart</button>
+  <a class="cart-button next-btn" routerLink = "/checkout"><span style = "color: white; font-weight: 400;">Next</span></a>
+</div>

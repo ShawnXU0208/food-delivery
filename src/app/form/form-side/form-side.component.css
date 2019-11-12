@@ -1,0 +1,53 @@
+.form-side{
+  width: 100%;
+  height: 100%;
+  background-color: #f5d085;
+  padding-top: 50px;
+}
+
+
+
+.form-side-text{
+  width: 100%;
+  font-weight: 700;
+  font-size: 25px;
+  color: #684b0c;
+}
+
+.form-side-image{
+  width: 100%;
+  padding: 0px;
+  position: absolute;
+  bottom: 0;
+}
+
+.form-side-image img{
+  width: 100%;
+}
+
+@media only screen and (max-width: 768px){
+  .form-side-image{
+    margin-top: 0;
+    padding: 0px;
+  }
+
+  .form-side-text{
+    width: 100%;
+    font-weight: 500;
+    font-size: 20px;
+    text-align: center;
+    color: #684b0c;
+    padding-top: 15%;
+  }
+
+  .form-side-image{
+    position: relative;
+  }
+
+}
+
+@media only screen and (max-width: 576px){
+  .form-side{
+    display: none;
+  }
+}
