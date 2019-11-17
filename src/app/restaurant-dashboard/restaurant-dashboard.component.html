@@ -1,0 +1,141 @@
+<app-header></app-header>
+
+<div class = "container dashboard">
+  <div class = "row">
+    <div class = "col-12 col-lg-3 dashboard-left">
+      <div class = "page-title">Restaurant Create</div>
+      <div class = "container" style = "padding: 0;">
+        <div class = "row">
+          <div class = "col-12">
+            <button><i class="fas fa-book-open"></i> Restaurant Info</button>
+          </div>
+          <div class = "col-12">
+            <button><i class="fas fa-utensils"></i> Menu Categories</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form class = "col-12 col-lg-9 dashboard-right" [formGroup] = "restaurantInfoForm" (ngSubmit)="onSubmit(restaurantInfoForm.value)">
+      <div class = "restaurant-image-section container">
+        <div class = "row">
+          <div class = "image-preview col-12 col-lg-6" [ngClass] = "{ 'my-invalid': submitted && !previewURL }">
+            <img [src] = "previewURL" *ngIf = "previewURL; else empty">
+            <ng-template #empty>
+              <img src = "../../assets/images/empty.jpg">
+            </ng-template>
+          </div>
+
+
+          <div class = "form-group col-12 col-lg-6 image-selector">
+            <div class = "title">Resuarant Main Image</div>
+            <label for = "restaurantImage"><i class="fas fa-upload"></i> upload image</label>
+            <input type = "file" id = "restaurantImage" formControlName = "restaurantImage" (change) = "fileProgress($event)" />
+            <div class = "small text-danger" *ngIf = "submitted && !previewURL">
+              <div *ngIf = "submitted && !previewURL">Image is required</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class = "form-group mt-3">
+        <label for = "restaurantName" class = "input-title">Restaurant name</label>
+        <input type="text" class="form-control" id="restaurantName" formControlName = "restaurantName" [ngClass] = "{ 'is-invalid': submitted && restaurantInfoForm.controls.restaurantName.errors }" />
+        <div class = "invalid-feedback" *ngIf = "submitted && restaurantInfoForm.controls.restaurantName.errors">
+          <div *ngIf = "restaurantInfoForm.controls.restaurantName.errors.required">Name is required</div>
+        </div>
+      </div>
+
+      <div class = "form-group mt-3">
+        <label for = "restaurantAddress" class = "input-title">Restaurant address</label>
+        <input type="text" class="form-control" id="restaurantAddress" formControlName = "restaurantAddress" [ngClass] = "{ 'is-invalid': submitted && restaurantInfoForm.controls.restaurantAddress.errors }" />
+        <div class = "invalid-feedback" *ngIf = "submitted && restaurantInfoForm.controls.restaurantAddress.errors">
+          <div *ngIf = "restaurantInfoForm.controls.restaurantAddress.errors.required">Address is required</div>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class = "form-group container mt-3 time-selector" style = "padding: 0;">
+        <div class = "input-title">Restaurant opening time</div>
+        <div>
+          <div class = "row mt-1">
+            <div class = "col-8 range-slider">
+              <span class = "limit-point">00:00</span>
+              <input type="range" class="form-control" min="0" max="24" step="0.5" value="0" [(ngModel)] = "openTime" [ngModelOptions]="{standalone: true}">
+              <span class = "limit-point">24:00</span>
+            </div>
+
+            <div class = "col-4 range-display">
+              <input type = "text" class = "form-control" formControlName = "restaurantOpen" id = "restaurantOpen" readonly [value] = "openTime | time" [ngClass] = "{ 'is-invalid': submitted && !openTime }" style = "background: none;">
+            </div>
+          </div>
+        </div>
+        <div class = "small text-danger" *ngIf = "!openTime && submitted">
+          <div *ngIf = "!openTime && submitted">Opening tiime is required</div>
+        </div>
+      </div>
+
+      <div class = "form-group container mt-3 time-selector" style = "padding: 0;">
+        <div class = "input-title">Restaurant closing time</div>
+        <div>
+          <div class = "row mt-1">
+            <div class = "col-8 range-slider">
+              <span class = "limit-point">00:00</span>
+              <input type="range" class="form-control" min="0" max="24" step="0.5" value="0" [(ngModel)] = "closeTime" [ngModelOptions]="{standalone: true}">
+              <span class = "limit-point">24:00</span>
+            </div>
+
+            <div class = "col-4 range-display">
+              <input type = "text" class = "form-control" formControlName = "restaurantClose" id = "restaurantClose" readonly [value] = "closeTime | time" [ngClass] = "{ 'is-invalid': submitted && !closeTime }" style = "background: none;">
+            </div>
+          </div>
+        </div>
+        <div class = "small text-danger" *ngIf = "submitted && !closeTime">
+          <div *ngIf = "submitted && !closeTime">Closing time is required</div>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class = "form-group mt-3 types-selector">
+       <div class = "input-title"> Restaurant Types</div>
+        <div>
+          <div class = "types">
+            <button type = "button" class = "type-select-item" (click) = "typeItemToggle($event)">Chinese</button>
+            <button type = "button" class = "type-select-item" (click) = "typeItemToggle($event)">Indian</button>
+            <button type = "button" class = "type-select-item" (click) = "typeItemToggle($event)">American</button>
+            <button type = "button" class = "type-select-item" (click) = "typeItemToggle($event)">Europe</button>
+            <button type = "button" class = "type-select-item" (click) = "typeItemToggle($event)">Kiwi</button>
+            <button type = "button" class = "type-select-item" (click) = "typeItemToggle($event)">Turkey</button>
+            <button type = "button" class = "type-select-item" (click) = "typeItemToggle($event)">Japanese</button>
+            <button type = "button" class = "type-select-item" (click) = "typeItemToggle($event)">Korean</button>
+          </div>
+          <input type = "text" class = "form-control mt-2" id = "restaurantTypes" formControlName = "restaurantTypes" readonly [value] = "selectedTypes" [ngClass] = "{ 'is-invalid': submitted && !selectedTypes.length }" style = "background: none;">
+          
+          <div class = "small text-danger" *ngIf = "submitted && !selectedTypes.length">
+            <div *ngIf = "submitted && !selectedTypes.length">at least one type is required</div>
+          </div>
+        
+        </div>
+
+      </div>
+
+      <hr>
+
+      <div class = "form-group mt-3 intro">
+        <label for = "restaurantIntro" class = "input-title">Restaurant introduction</label>
+        <textarea class = "form-control" id = "restaurantIntro" formControlName = "restaurantIntro" row = 4 [ngClass] = "{ 'is-invalid': submitted && restaurantInfoForm.controls.restaurantIntro.errors }"></textarea>
+        <div class = "invalid-feedback" *ngIf = "submitted && restaurantInfoForm.controls.restaurantIntro.errors">
+          <div *ngIf = "restaurantInfoForm.controls.restaurantIntro.errors.required">Image is required</div>
+        </div>
+      </div>
+
+ 
+      <button type = "submit" class = "btn btn-primary mt-3">Save Changes</button>
+
+
+    </form>
+  </div>
+
+</div>

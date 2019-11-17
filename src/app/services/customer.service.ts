@@ -1,45 +1,53 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { HttpHeaders, HttpErrorResponse } from '@angular/common/http'
-import 'rxjs/add/operator/map';
-import { Observable, throwError } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import { HttpClient } from '@angular/common/http';
-
-import { Customer } from '../../model/customer';
+import { Customer } from '../model/customer';
 
 
 
 
 @Injectable()
 export class CustomerService {
-  //private baseURL: string = "http://localhost:8888/foodDelivery/api/user/create.php";
-  private isLogged;
-  private apiURL = "http://localhost:4200/api/customers";
 
-  constructor(private http: HttpClient) {
-    this.isLogged = true;
-  }
+  constructor(private http: HttpClient){}
 
-/*
-  createNewCustomer(customer: Customer): Observable<Customer>{
-    return this.http.post<Customer>(
-      this.baseURL,
-      customer,
-      httpOptions
-    );
-  }
-*/
-  getLoggedStatus(){
-    return this.isLogged;
+  public login(email: string, password: string){
+
+    return this.http.post<any>(`/customers/login`, {email, password})
+      .pipe(map(data => {
+        localStorage.setItem("currentUser", JSON.stringify(data));
+        localStorage.setItem("currentRole", "customer");
+
+        return data;
+      }));
   }
 
-  logout(){
-    this.isLogged = false;
+  public register(customer: Customer){
+    console.log(customer);
+    return this.http.post(`/customers/register`, customer)
+      .pipe(map(data => {
+
+        let loggedUser = {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          phone: data.phone
+        };
+
+        localStorage.setItem("currentUser", JSON.stringify(loggedUser));
+        localStorage.setItem("currentRole", "customer");
+
+        return data;
+      }));
   }
 
-  login(){
-    this.isLogged = true;
+  public logout(){
+    localStorage.setItem("currentUser", "");
+    localStorage.setItem("currentRole", "");
   }
+
+
+
 
 }

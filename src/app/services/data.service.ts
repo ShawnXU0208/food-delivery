@@ -191,7 +191,16 @@ export class DataService implements InMemoryDbService{
 
     ];
 
-    const customers = [];
+    const customers = [
+      {
+        id: 1,
+        firstName: "shawn",
+        lastName: "Xu",
+        email: "xusuyuan0208@gmail.com",
+        phone: "0210400306",
+        password: "19940208xsy",
+      },
+    ];
 
     return {restuarants, customers, menu};
   }

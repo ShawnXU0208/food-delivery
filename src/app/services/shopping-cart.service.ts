@@ -30,7 +30,7 @@ export class ShoppingCartService {
               <div class = "category" style = "font-size: 10px; font-weight: 300; color: grey;">${item.category}</div>
             </div>
             <div class = "col-3 cart-item-text" style = "padding-top: 15px; padding-bottom: 15px;">
-              <div class = "item-price" style = "font-size: 12px; font-weight: 300; color: grey;">${item.price}</div>
+              <div class = "item-price" style = "font-size: 12px; font-weight: 300; color: grey;">\$${item.price}</div>
               <div class = "item-number" style = "font-size: 10px; font-weight: 300; color: grey;">x${item.number}</div>
             </div>
           </div>

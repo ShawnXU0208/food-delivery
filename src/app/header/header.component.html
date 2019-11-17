@@ -8,40 +8,85 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navBtns">
-    <ul class="navbar-nav ml-auto" *ngIf = "islogged == false; else loggedHeader">
+    <ul class="navbar-nav ml-auto" *ngIf = "!logInfo.isLogged; else loggedHeader">
       <li class="nav-item">
-        <a class="nav-link" routerLink = "/register">
-          <i class="fas fa-user"></i> Log in{{isLogged}}
+        <a class="nav-link" routerLink = "/customer/register">
+          <i class="fas fa-user"></i> Log in
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href = "#">
+        <a class="nav-link" routerLink = "/driver/register">
           <i class="fas fa-car"></i> become a driver
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" routerLink = "/owner/register">
           <i class="fas fa-handshake"></i> join us
         </a>
       </li>
     </ul>
 
     <ng-template #loggedHeader>
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" routerLink = "/register">
-            <i class="fas fa-user"></i>{{firstName}}
+      <ul class="navbar-nav ml-auto" *ngIf = "logInfo.userRole === 'customer'">
+        <li class="nav-item dropdown">
+          <a class="nav-link btn dropdown-toggle" role = "button" id = "customerMenu" data-toggle = "dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user"></i> {{userObj.firstName}}
           </a>
+
+          <div class = "dropdown-menu nav-dropdown dropdown-menu-right" aria-labelledby = "customerMenu">
+            <div class = "user-name">
+              {{userObj.firstName}} {{userObj.lastName}}
+            </div>
+
+            <div class = "user-info">
+              <div>{{userObj.email}}</div>
+              <div>{{userObj.phone}}</div>
+            </div>
+
+            <a class = "user-logout btn" (click) = "customerLogout()">logout</a>
+          </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href = "#">
-            <i class="fas fa-car"></i> become a driver
+      </ul>
+
+      <ul class="navbar-nav ml-auto" *ngIf = "logInfo.userRole === 'driver'">
+        <li class="nav-item dropdown">
+          <a class="nav-link btn dropdown-toggle" role = "button" id = "customerMenu" data-toggle = "dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-car"></i> {{userObj.firstName}}
           </a>
+
+          <div class = "dropdown-menu nav-dropdown dropdown-menu-right" aria-labelledby = "customerMenu">
+            <div class = "user-name">
+              {{userObj.firstName}} {{userObj.lastName}}
+            </div>
+
+            <div class = "user-info">
+              <div>{{userObj.email}}</div>
+              <div>{{userObj.phone}}</div>
+            </div>
+
+            <a class = "user-logout btn" (click) = "driverLogout()">logout</a>
+          </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <i class="fas fa-handshake"></i> join us
+      </ul>
+
+      <ul class="navbar-nav ml-auto" *ngIf = "logInfo.userRole === 'owner'">
+        <li class="nav-item dropdown">
+          <a class="nav-link btn dropdown-toggle" role = "button" id = "customerMenu" data-toggle = "dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-handshake"></i>  {{userObj.firstName}}
           </a>
+
+          <div class = "dropdown-menu nav-dropdown dropdown-menu-right" aria-labelledby = "customerMenu">
+            <div class = "user-name">
+              {{userObj.firstName}} {{userObj.lastName}}
+            </div>
+
+            <div class = "user-info">
+              <div>{{userObj.email}}</div>
+              <div>{{userObj.phone}}</div>
+            </div>
+
+            <a class = "user-logout btn" (click) = "ownerLogout()">logout</a>
+          </div>
         </li>
       </ul>
     </ng-template>

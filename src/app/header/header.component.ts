@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import * as globalImgs from '../../assets/images/image.data';
 import { CustomerService } from '../services/customer.service';
+import { DriverService } from '../services/driver.service';
+import { OwnerService } from '../services/owner.service';
+import { CurrentUserService } from '../services/current-user.service';
 
 
 @Component({
@@ -11,19 +14,44 @@ import { CustomerService } from '../services/customer.service';
 })
 export class HeaderComponent implements OnInit {
 
+  logInfo: any;
+  userObj: any;
+
   public logoImgSrc: string = globalImgs.logoImg;
 
-  public isLogged;
-  public firstName;
-  public lastName;
 
-  constructor(private customerService: CustomerService){
-  	this.isLogged = this.customerService.getLoggedStatus();
+  constructor(
+    private customerService: CustomerService,
+    private driverService: DriverService,
+    private ownerService: OwnerService,
+    private currentUserService: CurrentUserService
+  ){
+    this.logInfo = this.currentUserService.currentStatus();
+    //console.log(this.logInfo.isLogged);
+    if(this.logInfo.isLogged){
+      this.userObj = JSON.parse(this.logInfo.currentUser);
+    }
   }
+
+
 
   ngOnInit() {
-    this.firstName = sessionStorage.getItem("firstName");
-    this.lastName = sessionStorage.getItem("lastName");
   }
+
+  customerLogout(){
+    this.customerService.logout();
+    window.location.href = "";
+  }
+
+  driverLogout(){
+    this.driverService.logout();
+    window.location.href = "";
+  }
+
+  ownerLogout(){
+    this.ownerService.logout();
+    window.location.href = "";
+  }
+
 
 }
