@@ -12,7 +12,14 @@ export class DataService implements InMemoryDbService{
         tags: ['chinese', 'asia', 'cantonese'], 
         deliverFee: 6.99,
         deliverTime: "15-20min",
-        image: "1.jpeg"
+        open: 9,
+        close: 18,
+        address: "204 Hills Rd, Edgeware, Christchurch, Canterbury 8013",
+        phone: "021 033 055",
+        description: "consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?",
+        image: "1.jpeg",
+        rate: 3,
+        email: "DragonGarden@gmail.com"
       },
 
       {
@@ -20,8 +27,15 @@ export class DataService implements InMemoryDbService{
         name: 'Subway (Bush Inn)',
         tags: ['chinese', 'asia', 'cantonese'],
         deliverFee: 6.99,
-        deliverTime: "15-20min",
-        image: "2.jpeg"
+        deliverTime: "10-15min",
+        open: 10,
+        close: 15,
+        address: "1 Papanui Rd, Carlton,",
+        phone: "024 043 025",
+        description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem q",
+        image: "2.jpeg",
+        rate: 4,
+        email: "subwayBushInn@gmail.com"
       },
 
       {
@@ -30,7 +44,14 @@ export class DataService implements InMemoryDbService{
         tags: ['chinese', 'asia', 'cantonese'],
         deliverFee: 6.99,
         deliverTime: "15-20min",
-        image: "3.jpeg"
+        open: 8,
+        close: 18,
+        address: "326 Colombo St,",
+        phone: "022 022 055",
+        description: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique s",
+        image: "3.jpeg",
+        rate: 5,
+        email: "DubbaDubba@gmail.com"
       },
 
       {
@@ -38,8 +59,15 @@ export class DataService implements InMemoryDbService{
         name: 'Wycola Turkish Kebab',
         tags: ['chinese', 'asia', 'cantonese'],
         deliverFee: 6.99,
-        deliverTime: "15-20min",
-        image: "4.jpeg"
+        deliverTime: "15-24min",
+        open: 9,
+        close: 19,
+        address: "Hoyts Entx, 617-649 Colombo Street, Central Christchurch",
+        phone: "021 013 015",
+        description: "Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. ",
+        image: "4.jpeg",
+        rate: 2,
+        email: "wycolaTurkish@gmail.com"
       },
 
       {
@@ -47,8 +75,15 @@ export class DataService implements InMemoryDbService{
         name: 'Velvet Burger (Riccarton)',
         tags: ['chinese', 'asia', 'cantonese'],
         deliverFee: 6.99,
-        deliverTime: "15-20min",
-        image: "5.jpeg"
+        deliverTime: "18-24min",
+        open: 12,
+        close: 20,
+        address: "96 Oxford Terrace, Christchurch Central City",
+        phone: "021 033 055",
+        description: "Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ",
+        image: "5.jpeg",
+        rate: 5,
+        email: "VelvetBurger@gmail.com"
       },
 
       {
@@ -57,7 +92,14 @@ export class DataService implements InMemoryDbService{
         tags: ['chinese', 'asia', 'cantonese'],
         deliverFee: 6.99,
         deliverTime: "15-20min",
-        image: "6.jpeg"
+        open: 9,
+        close: 20,
+        address: "10 Welles St, Christchurch Central",
+        phone: "027 035 055",
+        description: "ut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisc",
+        image: "6.jpeg",
+        rate: 3,
+        email: "Tuktukthai@gmail.com"
       }
 
     ];

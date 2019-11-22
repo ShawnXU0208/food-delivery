@@ -1,3 +1,4 @@
+<!--
 <nav class="navbar navbar-expand-md navbar-light">
   <a class="navbar-brand" href = "#">
     <img [src] = "logoImgSrc">
@@ -10,7 +11,7 @@
   <div class="collapse navbar-collapse" id="navBtns">
     <ul class="navbar-nav ml-auto" *ngIf = "!logInfo.isLogged; else loggedHeader">
       <li class="nav-item">
-        <a class="nav-link" routerLink = "/customer/register">
+        <a class="nav-link" [routerLink] = "[{ outlets: { primary: ['customer-register'],appRight: ['customer-register'] } }]">
           <i class="fas fa-user"></i> Log in
         </a>
       </li>
@@ -91,5 +92,18 @@
       </ul>
     </ng-template>
   </div>
-
 </nav>
+-->
+<button class = "controller" (click) = "onOver()" [@flip] = "active? 'active' : 'inactive' ">
+  <i class="fas fa-power-off" *ngIf = "!active; else closeIcon"></i>
+  <ng-template #closeIcon>
+    <i class="fas fa-times"></i>
+  </ng-template>
+</button>
+<div class = "header" [@headerActive] = "active? 'active' : 'inactive' " (click) = "onOver()">
+  <div class = "header-body" *ngIf = "active">
+    <button id = "home" routerLink = ""><i class="fas fa-home"></i></button>
+    <button id = "sign-out" (click) = "logout()"><i class="fas fa-sign-out-alt"></i></button>
+    <button id = "cart" [routerLink] = "['/', { outlets: {primary: ['restaurant-menu', 1], appRight: ['shopping-cart'] } }]"><i class="fas fa-shopping-cart"></i></button>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.css']
 })
-export class ShoppingCartComponent implements OnDestroy {
+export class ShoppingCartComponent implements OnDestroy, OnInit{
 
   //cartItemsHTML = new Observable<any>();
   cartItemInfo: any;
@@ -20,6 +20,10 @@ export class ShoppingCartComponent implements OnDestroy {
     this.subscription = this.shoppingCartService.getHTML().subscribe(data => {
       this.cartItemInfo = data;
     });
+  }
+
+  ngOnInit(){
+    this.shoppingCartService.getInitHTML();
   }
 
   ngOnDestroy() {

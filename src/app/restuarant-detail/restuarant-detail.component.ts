@@ -1,14 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { trigger, state, style, animate, transition, query } from '@angular/animations';
 
 import { RestuarantDetailService } from '../services/restuarant-detail.service';
+import { GlobalDataService } from '../services/global-data.service';
 
 @Component({
   selector: 'app-restuarant-detail',
   templateUrl: './restuarant-detail.component.html',
-  styleUrls: ['./restuarant-detail.component.css']
+  styleUrls: ['./restuarant-detail.component.css'],
+  animations: [
+    trigger("categorySelected", [
+      state('selected', style({
+        backgroundColor: '#de85bd',
+        color: 'white'
+      })),
+      state('unselected', style({
+        background: 'none',
+        color: '#de85bd'
+      })),
+      transition('* => *', [
+        animate('0.3s ease-in-out')
+      ])
+    ])
+  ]
 })
 export class RestuarantDetailComponent implements OnInit {
+
 
   //info_name: string;
   id: number;
@@ -18,10 +36,12 @@ export class RestuarantDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private restuarantDetailService: RestuarantDetailService
+    private restuarantDetailService: RestuarantDetailService,
+    private globalDataService: GlobalDataService
   ){
     this.id = +this.route.snapshot.paramMap.get('id');
     this.menuCategories = new Set();
+    this.globalDataService.changeExpandPrimary(true);
   }
 
   ngOnInit() {
@@ -39,6 +59,8 @@ export class RestuarantDetailComponent implements OnInit {
           this.menuCategories.add(menu['category']);
         }
       });
+
+
   }
 
   changeCategory(category): void{

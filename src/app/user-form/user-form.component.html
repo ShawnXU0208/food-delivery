@@ -1,42 +1,39 @@
-<app-header></app-header>
 
-<div class = "background">
   <div class = "form container">
-    <div class = "row no-gutters">
-      <app-form-side class = "col-12 col-md-4"></app-form-side>
+      
+      <div class = "second-link small" *ngIf = "formMode.action === 'register' && formMode.role === 'customer' ">
+        Already a member?
+        <a [routerLink] = "['/', { outlets: {appRight: ['customer-login'] } }]">Log in</a>
+      </div>
 
-      <form [formGroup] = "userForm" (ngSubmit)="onSubmit(userForm.value)" class = "col-12 col-md-8 form-body" novalidate>
+      <form [formGroup] = "userForm" (ngSubmit)="onSubmit(userForm.value)" class = "form-body" novalidate>
 
         <app-form-alerts></app-form-alerts>
 
         <!-- display other links(sign in / sign up) at the right corner depends on user's role and action -->
         
-        <div class = "second-link small" *ngIf = "formMode.action === 'register' && formMode.role === 'customer' ">
-          Already a member?
-          <a routerLink = "/customer/login">Log in</a>
-        </div>
 
         <div class = "second-link small" *ngIf = "formMode.action === 'login' && formMode.role === 'customer'">
           Not a member?
-          <a routerLink = "/customer/register">Sign up</a>
+          <a [routerLink] = "['/', { outlets: {appRight: ['customer-register'] } }]">Sign up</a>
         </div>
         <div class = "second-link small" *ngIf = "formMode.action === 'register' && formMode.role === 'driver' ">
           Already a driver?
-          <a routerLink = "/driver/login">Log in</a>
+          <a [routerLink] = "['/', { outlets: {appRight: ['driver-login'] } }]">Log in</a>
         </div>
 
         <div class = "second-link small" *ngIf = "formMode.action === 'login' && formMode.role === 'driver'">
           Not a driver?
-          <a routerLink = "/driver/register">Sign up</a>
+          <a [routerLink] = "['/', { outlets: {appRight: ['driver-register'] } }]">Sign up</a>
         </div>
         <div class = "second-link small" *ngIf = "formMode.action === 'register' && formMode.role === 'owner' ">
           Already a restaurant owner?
-          <a routerLink = "/owner/login">Log in</a>
+          <a [routerLink] = "['/', { outlets: {appRight: ['owner-login'] } }]">Log in</a>
         </div>
 
         <div class = "second-link small" *ngIf = "formMode.action === 'login' && formMode.role === 'owner'">
           Not a restaurant owner?
-          <a routerLink = "/owner/register">Sign up</a>
+          <a [routerLink] = "['/', { outlets: {appRight: ['owner-register'] } }]">Sign up</a>
         </div>
 
         <!-- display the right form title at the right corner depends on user's role and action -->
@@ -99,21 +96,23 @@
           </div>
         </div>
 
-        <div class="form-group" *ngIf = "formMode.action === 'register' && formMode.role === 'driver' ">
-          <label for="carPlate" class = "font-weight-bold small">Car Plate</label>
-          <input type="text" class="form-control" id="carPlate" formControlName = "carPlate" [ngClass] = "{ 'is-invalid': submitted && userForm.controls.carPlate.errors }">
-          <div class = "invalid-feedback" *ngIf = "submitted && userForm.controls.carPlate.errors">
-            <div *ngIf = "userForm.controls.carPlate.errors.required">Car Plate is required</div>
-          </div>
-        </div>  
+        <div class = "form-row"  *ngIf = "formMode.action === 'register' && formMode.role === 'driver' ">
+          <div class="form-group col-md-6">
+            <label for="carPlate" class = "font-weight-bold small">Car Plate</label>
+            <input type="text" class="form-control" id="carPlate" formControlName = "carPlate" [ngClass] = "{ 'is-invalid': submitted && userForm.controls.carPlate.errors }">
+            <div class = "invalid-feedback" *ngIf = "submitted && userForm.controls.carPlate.errors">
+              <div *ngIf = "userForm.controls.carPlate.errors.required">Car Plate is required</div>
+            </div>
+          </div>  
 
-        <div class="form-group" *ngIf = "formMode.action === 'register' && formMode.role === 'driver' ">
-          <label for="license" class = "font-weight-bold small">Driver License</label>
-          <input type="text" class="form-control" id="license" formControlName = "license" [ngClass] = "{ 'is-invalid': submitted && userForm.controls.license.errors }">
-          <div class = "invalid-feedback" *ngIf = "submitted && userForm.controls.license.errors">
-            <div *ngIf = "userForm.controls.license.errors.required">Driver license is required</div>
-          </div>
-        </div>     
+          <div class="form-group col-md-6" *ngIf = "formMode.action === 'register' && formMode.role === 'driver' ">
+            <label for="license" class = "font-weight-bold small">Driver License</label>
+            <input type="text" class="form-control" id="license" formControlName = "license" [ngClass] = "{ 'is-invalid': submitted && userForm.controls.license.errors }">
+            <div class = "invalid-feedback" *ngIf = "submitted && userForm.controls.license.errors">
+              <div *ngIf = "userForm.controls.license.errors.required">Driver license is required</div>
+            </div>
+          </div>            
+        </div>   
 
         <div class="form-group" *ngIf = "formMode.action === 'register' && formMode.role === 'owner' ">
           <label for="company" class = "font-weight-bold small">Company Name</label>
@@ -132,9 +131,9 @@
         </div>
 
 
-        <button type="submit" class="btn btn-danger mt-5" *ngIf = "formMode.action === 'register'">Create Account</button>
+        <button type="submit" class="btn btn-danger mt-2" *ngIf = "formMode.action === 'register'">Create Account</button>
         <button type="submit" class="btn btn-danger mt-5" *ngIf = "formMode.action === 'login'">Sign In</button>
       </form>
-    </div>
+
   </div>
-</div>
+

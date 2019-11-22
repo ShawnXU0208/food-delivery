@@ -1,2 +1,31 @@
-<router-outlet></router-outlet>
+<app-header></app-header>
+
+<div class = "container-fluid app-background">
+  <div class = "row" *ngIf = "!expand; else expandLayout">
+    <div class = "col-lg-6 col-12 app-left">
+      <router-outlet></router-outlet>
+    </div>
+    <div class = "col-lg-6 col-12 app-right">
+      <router-outlet name = 'appRight'></router-outlet>
+    </div>
+  </div>
+
+  <ng-template #expandLayout>
+    <div class = "row">
+      <div class = "col-lg-8 col-12 app-left">
+        <router-outlet></router-outlet>
+      </div>
+      <div class = "col-lg-4 col-12 app-right">
+        <router-outlet name = 'appRight'></router-outlet>
+      </div>
+    </div>  
+  </ng-template>
+
+
+</div>
+
+
+
+
+
 

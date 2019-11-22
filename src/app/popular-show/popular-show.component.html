@@ -1,0 +1,21 @@
+<div class = "title">Popular Restaurants</div>
+
+<button class = "all-btn" [routerLink] = "[{ outlets: {primary: ['restaurant-list'], appRight: ['restaurant-info', 1] } }]">Explore All</button>
+
+<div class = "slide-container">
+
+  <div class = "control">
+    <button class = 'btn' type = "button" id = "previous" (click) = "showPrevious()"><<</button>
+    <button class = 'btn' type = "button" id = "next" (click) = "showNext()">>></button>
+  </div>
+
+  <div class = "slide" *ngFor = "let restaurant of restaurants; index as restaurantId">
+    <img class = "main" [src] = "'../../assets/images/' + restaurant.image" [@slideChangeMain] = "slidesState[restaurantId]">
+    <div *ngIf = "menuItems.length">
+      <img class = "sub" [id] = "'sub-' + (i + 1)" [src] = "'../../assets/images/' + menuItems[menu].image" *ngFor = "let menu of randomPopulars; index as i">
+    </div>
+
+    <button type = "button" class = "btn btn-outline-secondary enter-button" [routerLink] = "['/', { outlets: {primary: ['restaurant-menu', restaurantId],appRight: ['shopping-cart'] } }]">Enter</button>
+  </div>
+
+</div>

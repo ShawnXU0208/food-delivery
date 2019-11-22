@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ShoppingCartService } from '../services/shopping-cart.service';
+import { GlobalDataService } from '../services/global-data.service';
 
 @Component({
   selector: 'app-checkout',
@@ -10,13 +11,18 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
 export class CheckoutComponent implements OnInit {
 
   cartItems: any[] = [];
-  totalPrice: number = 0;
+  //totalPrice: number = 0;
 
-  constructor(private shoppingCartService: ShoppingCartService) { }
+  constructor(
+    private shoppingCartService: ShoppingCartService,
+    private globalDataService: GlobalDataService
+  ) {
+    this.globalDataService.changeExpandPrimary(true);
+  }
 
   ngOnInit() {
     this.cartItems = this.shoppingCartService.getCartItems();
-    this.totalPrice = this.shoppingCartService.getTotalPrice();
+    //this.totalPrice = this.shoppingCartService.getTotalPrice();
   }
 
   reset(){

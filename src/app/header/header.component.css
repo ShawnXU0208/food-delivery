@@ -1,3 +1,4 @@
+/*
 .navbar{
   margin: 0px;
 
@@ -36,3 +37,58 @@
 .dropdown-toggle{
   cursor: pointer;
 }
+*/
+
+.header{
+  display: inline-block;
+  background-color: white;
+  border-radius: 100%;
+  z-index: 1;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  transform: translate(-50%, -50%);
+}
+
+.controller{
+  position: fixed;
+  top: 5px;
+  left: 5px;
+  z-index: 5;
+  padding: 0px;
+  font-size: 30px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  background: none;
+  border: none; 
+}
+
+.header-body button{
+  font-size: 25px;
+  padding: 5px;
+  width: 50px;
+  height: 50px;
+  border: 2px solid black;
+  border-radius: 100%;
+  background-color: white; 
+  position: absolute;
+  display: inline-block;
+}
+
+#home{
+  bottom: 15%;
+  right: 15%;
+}
+
+#cart{
+  bottom: 35%;
+  right: 5%;
+}
+
+#sign-out{
+  bottom: 5%;
+  right: 35%;
+}
+
+

@@ -1,42 +1,48 @@
-<div class = "home mb-3">
-	<app-header></app-header>
+<div class = "home">
+  <h2 class = "text-white">Food Delivery</h2>
+  <small class = "text-muted">Your Favorite Food, Delivered with US.</small>
 
-	<div class = "hero-text">
-		Your Favorite Food,<br>
-		Delivered with Uber.
-	</div>	
+  <p class = "small mt-4 text-white">Enter your post code to find local restaurants</p>
+  <div class="search-bar">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <button id="button-addon2" type="submit" class="btn btn-link text-white small"><i class="fa fa-search"></i></button>
+      </div>
+      <input type="search" placeholder="e.g. 8041" aria-describedby="button-addon2" class="form-control border-0 rounded rounded-pill text-white">
+    </div>
+  </div>
 
-	<div class = "nearby-panel">
-	  
 
-		<label for = "post-code" class = "small">
-			Enter your post code to find local restaurants
-		</label>
+  <div *ngIf = "!logInfo.isLogged; else loggedPage">
+    <div id = "users-group">
+      <div class = "user-btns" style = "margin-top: 25%;">
+        <button type = "button" class = "action-btn" data-toggle = "collapse" data-target = "#sign-in-btns">Sign In</button>
+        <div id = "sign-in-btns" class = "collapse user-btns" data-parent = "#users-group">
+          <div class = "btns-box">
+            <button type = "button" (click) = "clickButton('1')" [@clickButton] = "buttonClicked == 1? 'clicked':'unclicked' " [routerLink] = "[{ outlets: {appRight: ['customer-login'] } }]">Customer</button>
+            <button type = "button" (click) = "clickButton('2')" [@clickButton] = "buttonClicked == 2? 'clicked':'unclicked' " [routerLink] = "[{ outlets: {appRight: ['driver-login'] } }]">Driver</button>
+            <button type = "button" (click) = "clickButton('3')" [@clickButton] = "buttonClicked == 3? 'clicked':'unclicked' " [routerLink] = "[{ outlets: {appRight: ['owner-login'] } }]">Owner</button>
+          </div>
+        </div>
+      </div>
 
-		<div class = "input-group mb-2">
-			<input type="text" class="form-control input-sm" id = "post-code" placeholder="e.g. 8041" aria-describedby="address input">
-			<div class="input-group-append ml-3">
-				<button class="btn btn-primary" type="button">Search</button>
-			</div>
-		</div>
+      <div class = "user-btns mt-3">
+        <button type = "button" class = "action-btn" data-toggle = "collapse" data-target = "#sign-up-btns">Sign Up</button>
+        <div id = "sign-up-btns" class = "collapse user-btns" data-parent = "#users-group">
+          <div class = "btns-box">
+            <button type = "button" (click) = "clickButton('4')" [@clickButton] = "buttonClicked == 4? 'clicked':'unclicked' " [routerLink] = "[{ outlets: {appRight: ['customer-register'] } }]">Customer</button>
+            <button type = "button" (click) = "clickButton('5')" [@clickButton] = "buttonClicked == 5? 'clicked':'unclicked' " [routerLink] = "[{ outlets: {appRight: ['driver-register'] } }]">Driver</button>
+            <button type = "button" (click) = "clickButton('6')" [@clickButton] = "buttonClicked == 6? 'clicked':'unclicked' " [routerLink] = "[{ outlets: {appRight: ['owner-register'] } }]">Owner</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-		<p class = "small font-weight-lighter mb-0"><a href = "#">log in</a> for your recent address</p>
-
-	</div>
-
+  <ng-template #loggedPage>
+    <div style = "margin-top: 150px;">
+      <p class = "greeting">Welcome:</p>
+      <p class = "name">{{userObj.firstName}} {{userObj.lastName}}</p>
+    </div>
+  </ng-template>
 </div>
-
-<div class = "restuarants-list container-fluid">
-
-	<p class = "font-weight-bold sub-title">Popular food near you</p>
-	<hr>
-
-	<div class = "pupular-list row">
-
-		<div *ngFor = "let restuarant of restuarants; index as restuarantId" class = "col-12 col-sm-12 col-md-6 col-lg-4">
-			<app-restuarant-item [restuarant] = "restuarant"></app-restuarant-item>
-		</div>	
-	</div>
-	
-</div>
-

@@ -43,32 +43,32 @@ export class UserFormComponent implements OnInit {
 
     switch (true) {
 
-      case this.router.url.endsWith("customer/login"):
+      case this.router.url.includes("customer-login"):
         this.formMode.role = "customer";
         this.formMode.action = "login";
         break;
 
-      case this.router.url.endsWith("customer/register"):
+      case this.router.url.includes("customer-register"):
         this.formMode.role = "customer";
         this.formMode.action = "register";
         break;
 
-      case this.router.url.endsWith("driver/login"):
+      case this.router.url.includes("driver-login"):
         this.formMode.role = "driver";
         this.formMode.action = "login";
         break;
 
-      case this.router.url.endsWith("driver/register"):
+      case this.router.url.includes("driver-register"):
         this.formMode.role = "driver";
         this.formMode.action = "register";
         break;
 
-      case this.router.url.endsWith("owner/login"):
+      case this.router.url.includes("owner-login"):
         this.formMode.role = "owner";
         this.formMode.action = "login";
         break;
 
-      case this.router.url.endsWith("owner/register"):
+      case this.router.url.includes("owner-register"):
         this.formMode.role = "owner";
         this.formMode.action = "register";
         break;
@@ -79,7 +79,7 @@ export class UserFormComponent implements OnInit {
 
     switch (true) {
 
-      case this.router.url.endsWith("login"):
+      case this.router.url.includes("login"):
         // when a user(customer, driver or owner) to log in
         this.userForm = this.formBuilder.group({
           email: ['', Validators.required],
@@ -87,7 +87,7 @@ export class UserFormComponent implements OnInit {
         });
         break;
 
-      case this.router.url.endsWith("customer/register"):
+      case this.router.url.includes("customer-register"):
         // when a customer to sign up
         this.userForm = this.formBuilder.group({
           firstName: ['', Validators.required],
@@ -98,7 +98,7 @@ export class UserFormComponent implements OnInit {
         });
         break;  
 
-      case this.router.url.endsWith("driver/register"):
+      case this.router.url.includes("driver-register"):
         // when a driver to sign up
         this.userForm = this.formBuilder.group({
           firstName: ['', Validators.required],
@@ -111,7 +111,7 @@ export class UserFormComponent implements OnInit {
         });
         break; 
 
-      case this.router.url.endsWith("owner/register"):
+      case this.router.url.includes("owner-register"):
         // when a restaurant owner to sign up
         this.userForm = this.formBuilder.group({
           firstName: ['', Validators.required],
@@ -140,7 +140,7 @@ export class UserFormComponent implements OnInit {
     switch (true) {
       //decide form submit function controls depends on user role and action
 
-      case this.router.url.endsWith("customer/login"):
+      case this.router.url.includes("customer-login"):
         // when a customer to log in
         this.customerService.login(userData['email'], userData['password'])
           .pipe(first())
@@ -158,7 +158,7 @@ export class UserFormComponent implements OnInit {
           );
         break;
 
-      case this.router.url.endsWith("customer/register"):
+      case this.router.url.includes("customer-register"):
         // when a customer to sign up
         let newCustomer = new Customer(
           userData["firstName"],
@@ -187,7 +187,7 @@ export class UserFormComponent implements OnInit {
 
 
 
-      case this.router.url.endsWith("driver/login"):
+      case this.router.url.includes("driver-login"):
         // when a driver to log in
         this.driverService.login(userData['email'], userData['password'])
           .pipe(first())
@@ -205,7 +205,7 @@ export class UserFormComponent implements OnInit {
           );
         break;
 
-      case this.router.url.endsWith("driver/register"):
+      case this.router.url.includes("driver-register"):
         // when a driver to sign up
         let newDriver = new Driver(
           userData["firstName"],
@@ -234,7 +234,7 @@ export class UserFormComponent implements OnInit {
         break; 
 
 
-      case this.router.url.endsWith("owner/login"):
+      case this.router.url.includes("owner-login"):
         // when a owner to log in
         this.ownerService.login(userData['email'], userData['password'])
           .pipe(first())
@@ -252,7 +252,7 @@ export class UserFormComponent implements OnInit {
           );
         break;
 
-      case this.router.url.endsWith("owner/register"):
+      case this.router.url.includes("owner-register"):
         // when a driver to sign up
         let newOwner = new Owner(
           userData["firstName"],

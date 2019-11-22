@@ -1,50 +1,13 @@
-.restuarant-head{
-  padding: 0px;
-  color: #9ea1a1;
-  width: 90%;
-  margin: auto;
 
-}
-
-.restuarant-navgation a{
-  color: #de85bd;
-}
-
-.restuarant-navgation .current-restuarant{
-  color: #9ea1a1;
-}
-
-.restuarant-name{
-  font-size: 30px;
-  font-weight: 700;
-  color: black;
-}
-
-.restuarant-head-right .restuarant-image{
-  width: 100%;
-  max-width: 370px;
-  height: 170px;
-}
-
-.delivery-time{
-  color: black;
-  font-size: 15px
-}
-
-.restuarant-body{
-  margin: auto;
-  padding: 10px 5%;
-
-}
-
-.delivery-time i{
-  color: #2c278a;
+.restaurant-container{
+  padding: 8% 5% 3% 5%;
 }
 
 .menu-categories{
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
+
 }
 
 .menu-category{
@@ -53,6 +16,7 @@
   font-weight: 400;
   background: none;
   border: none;
+  border-radius: 13px;
 }
 
 

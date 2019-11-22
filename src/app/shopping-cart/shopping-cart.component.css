@@ -9,6 +9,11 @@
 }
 
 
+#product-items{
+  height: 100%;
+  overflow-y: scroll;
+}
+
 .delivery-fee{
   height: 70px;
   margin: 15px 0px;

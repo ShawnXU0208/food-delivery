@@ -1,0 +1,52 @@
+
+<div class = "restaurant-info">
+  <div class = "name">{{restaurantInfo['name']}}</div>
+
+  <div class = "rate-stars">
+    <span *ngFor = "let rate of rates">
+      <i class="fas fa-star" *ngIf = "rate; else emptyStar"></i>
+      <ng-template #emptyStar>
+        <span><i class="far fa-star"></i></span>
+      </ng-template>
+    </span>
+  </div>
+
+  <div clas = "restuarant-open-hours small">
+    open from {{restaurantInfo['open'] | time}} to {{restaurantInfo['close'] | time}}
+  </div>
+  <div class = "restuarant-tags small">
+    <span *ngFor = "let tag of restaurantInfo['tags']">
+      {{tag}} <i class="fas fa-circle" style = "font-size: 3px;"></i>
+    </span>
+  </div>
+  
+  <div class = "contact mt-4">
+    <div class = "sub-title">Contact Restaurant</div>
+    <div class = "address small" style = "color: #2ecc71;">
+      <i class="fas fa-phone mr-3"></i>
+      <p>{{restaurantInfo['address']}}</p>
+    </div>  
+    <div class = "email small" style = "color: #3498db;">
+      <i class="fas fa-envelope-square mr-3"></i>
+      <p>{{restaurantInfo['email']}}</p>
+    </div>  
+    <div class = "phone small" style = "color: #e74c3c;">
+      <i class="fas fa-map-marker mr-3"></i>
+      <p>{{restaurantInfo['phone']}}</p>
+    </div>
+  </div>
+
+  <div class = "description small mt-3">
+    <div class = "sub-title">Restaurant Description</div>
+    <p>
+      {{restaurantInfo['description']}}
+    </p>
+  </div>
+
+  <div class = "delivery-time mt-3">
+    <i class="fas fa-car-side mr-1"></i>
+    Deliver in {{restaurantInfo.deliverTime}}
+  </div>
+
+  <button [routerLink] = "['/', { outlets: {primary: ['restaurant-menu', 1], appRight: ['shopping-cart'] } }]">Enter</button>
+</div>

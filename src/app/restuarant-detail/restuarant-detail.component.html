@@ -1,69 +1,15 @@
-<app-header></app-header>
+<div *ngIf = "restuarantInfo" class = "restaurant-container">
 
-<div *ngIf = "restuarantInfo">
-  <div class = "container-fluid">
-    <div class = "row restuarant-head mb-3">
-      <div class = "restuarant-head-left col-lg-8 col-md-6 col-sm-12">
-        <div class = "restuarant-navgation font-weight-light small">
-          <a href = "#">Home</a>
-           / 
-          <a href = "#">All Restuarants</a>
-           / 
-          <span class = "current-restuarant">{{restuarantInfo['name']}}</span>
-        </div>
-
-        <div class = "restuarant-name">{{restuarantInfo['name']}}</div>
-
-        <div clas = "restuarant-open-hours small">open from 9:00am to 23:00pm</div>
-
-        <hr>
-
-        <div class = "restuarant-tags small">
-          <span *ngFor = "let tag of restuarantInfo['tags']">
-            {{tag}} <i class="fas fa-circle" style = "font-size: 3px;"></i>
-          </span>
-        </div>
-
-        <div class = "restuarant-location small">128-130 Curtain Road, London, EC2A3AQ</div>
-
-        <div class = "restuarant-description small mt-1">
-          The Diner brings a true taste of Americana to your front door. With its burgers, fries and dogs, it's seriously good Southern soulfood. Put a couple dimes in the jukebox and get The Diner Mac and Cheese, alongside some real US Buttermilk Fried Chicken.
-        </div>
-      </div>
-
-      <div class = "restuarant-head-right col-lg-4 col-md-6 col-sm-12">
-        <img class = "restuarant-image" [src] = "'../../assets/images/' + restuarantInfo.image">
-        <div class = "delivery-time mt-3">
-          <i class="fas fa-car-side mr-1"></i>
-          Deliver in {{restuarantInfo.deliverTime}}
-        </div>
-      </div>
-    </div>
-
-    <div class = "row restuarant-body" style = "border-top: 1px solid lightgrey">
-      <div class = "col-lg-8 col-12">
-        <div class = "menu-categories">
-          <button *ngFor = "let category of menuCategories" class = "menu-category mr-4" (click) = "changeCategory(category)">
-            {{category}}
-          </button>
-        </div>
-      </div>
-
-      <div class = "col-lg-4 col-12 cart">
-      </div>
-
-    </div>
-
-    <div class = "row restuarant-body" style = "background: #faf9fc;">
-      <div class = "col-lg-8 col-12">
-        <app-menu-of-category [categoryName] = "selectedCategory"></app-menu-of-category>
-      </div>
-      <div class = "col-lg-4 col-12" style = "padding: 0px;">
-        <app-shopping-cart></app-shopping-cart>
-      </div>
-    </div>
-
+  <div class = "menu-categories">
+    <button *ngFor = "let category of menuCategories" class = "menu-category mr-4" (click) = "changeCategory(category)" [@categorySelected] = "selectedCategory == category? 'selected' : 'unselected' ">
+      {{category}}
+    </button>
   </div>
+
+  <app-menu-of-category [categoryName] = "selectedCategory"></app-menu-of-category>
+
+
+
 </div>
 
 

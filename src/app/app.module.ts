@@ -8,6 +8,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';  
 import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { AppComponent } from './app.component';
@@ -21,7 +22,6 @@ import { DataService } from './services/data.service';
 import { MenuOfCategoryComponent } from './menu-of-category/menu-of-category.component';
 import { MenuItemComponent } from './menu-item/menu-item.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-import { CartItemComponent } from './cart-item/cart-item.component';
 import { NoSanitizePipe } from './no-sanitize.pipe';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { RequestsHandler } from './requests-handler';
@@ -29,6 +29,11 @@ import { FormAlertsComponent } from './form/form-alerts/form-alerts.component';
 import { RestaurantDashboardComponent } from './restaurant-dashboard/restaurant-dashboard.component';
 import { TimePipe } from './time.pipe';
 import { UserFormComponent } from './user-form/user-form.component';
+import { routingModule } from "./routing.module";
+import { PopularShowComponent } from './popular-show/popular-show.component';
+import { RestaurantInfoComponent } from './restaurant-info/restaurant-info.component';
+import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
+import { CheckoutSideComponent } from './checkout-side/checkout-side.component';
 
 
 @NgModule({
@@ -38,8 +43,11 @@ import { UserFormComponent } from './user-form/user-form.component';
     HttpModule,
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
     InMemoryWebApiModule.forRoot(DataService),
-    RouterModule.forRoot([
+    routingModule
+    //RouterModule.forRoot([
+      /*
       {path: '', component: HomePageComponent},
       //{path: 'register', component: CustomerRegisterComponent},
       //{path: 'login', component: CustomerLoginComponent},
@@ -52,7 +60,20 @@ import { UserFormComponent } from './user-form/user-form.component';
       {path: 'restuarant/:id', component: RestuarantDetailComponent},
       {path: 'checkout', component: CheckoutComponent},
       {path: 'dashboard', component: RestaurantDashboardComponent}
-    ])
+      */
+
+      /*
+      {path: '', component: HomePageComponent, outlet: "app-left"},
+      {path: 'customer/login', component: HomePageComponent, outlet: "app-left"},
+      {path: 'customer/login', component: UserFormComponent, outlet: "app-right"},
+      {path: 'customer/register', component: HomePageComponent, outlet: "app-left"},
+      {path: 'customer/register', component: UserFormComponent, outlet: "app-right"},
+      {path: 'driver/login', component: UserFormComponent, outlet: "app-right"},
+      {path: 'driver/register', component: UserFormComponent, outlet: "app-right"},
+      {path: 'owner/login', component: UserFormComponent, outlet: "app-right"},
+      {path: 'owner/register', component: UserFormComponent, outlet: "app-right"}
+      */
+    //])
   ],
 
   declarations: [
@@ -65,13 +86,16 @@ import { UserFormComponent } from './user-form/user-form.component';
     MenuOfCategoryComponent,
     MenuItemComponent,
     ShoppingCartComponent,
-    CartItemComponent,
     NoSanitizePipe,
     CheckoutComponent,
     FormAlertsComponent,
     RestaurantDashboardComponent,
     TimePipe,
-    UserFormComponent
+    UserFormComponent,
+    PopularShowComponent,
+    RestaurantInfoComponent,
+    RestaurantListComponent,
+    CheckoutSideComponent
   ],
 
   bootstrap:    [ AppComponent ],

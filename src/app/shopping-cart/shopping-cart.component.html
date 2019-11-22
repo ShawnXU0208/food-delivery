@@ -2,7 +2,9 @@
 
   <div style = "font-size: 25px; font-weight: 500; margin-left: 4%;">Cart</div>
 
-  <div id = "product-items" *ngIf = "cartItemInfo" [innerHTML] = "cartItemInfo.html | noSanitize"></div>
+  <div style = "height: 40vh;">
+    <div id = "product-items" *ngIf = "cartItemInfo" [innerHTML] = "cartItemInfo.html | noSanitize"></div>
+  </div>
 
   <div class = "container delivery-fee mt-3">
     <div class = "row">
@@ -27,5 +29,5 @@
   </div>
 
   <button class="cart-button clear-btn" (click) = "clearCart()">Clear Cart</button>
-  <a class="cart-button next-btn" routerLink = "/checkout"><span style = "color: white; font-weight: 400;">Next</span></a>
+  <a class="cart-button next-btn" [routerLink] = "['/', { outlets: {primary: ['checkout'], appRight: ['checkout'] } }]"><span style = "color: white; font-weight: 400;">Next</span></a>
 </div>

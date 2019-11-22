@@ -121,4 +121,8 @@ export class ShoppingCartService {
     return this.subject.asObservable();
   }
 
+  getInitHTML(){
+    this.subject.next({html: this.cartHTML, total_price: this.totalPrice});
+  }
+
 }

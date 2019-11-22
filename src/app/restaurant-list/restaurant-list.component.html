@@ -1,0 +1,38 @@
+
+<div class = 'container restaruants-list'>
+  <div class = "category-name row">Chinese</div>
+  <div class = 'row'>
+    <div class = 'col-md-6 col-sm-12 col-12 restaruant-item' (click) = "onVisit(id + 1)" (mouseover) = "onVisit(id + 1)" *ngFor = 'let restaurant of restaurants; index as id' [routerLink] = "['/', { outlets: {appRight: ['restaurant-info', id + 1] } }]">
+      <img [src] = " '../../assets/images/' + restaurant.image" [@imageDarkness] = "restaurantId == id + 1? 'mouseOver' : 'mouseOut' ">
+      <div class = "restaruant-name" [@nameDisappear] = "restaruantId == id + 1? 'mouseOver' : 'mouseOut' ">{{restaurant.name}}</div>
+    </div>
+  </div>
+
+
+  <div class = "category-name row">Japanese</div>
+  <div class = 'row'>
+    <div class = 'col-md-6 col-sm-12 col-12 restaruant-item' (click) = "onVisit(id + 1 + 6)" (mouseover) = "onVisit(id + 1 + 6)" *ngFor = 'let restaurant of restaurants; index as id' [routerLink] = "['/', { outlets: {appRight: ['restaurant-info', id + 1] } }]">
+      <img [src] = " '../../assets/images/' + restaurant.image" [@imageDarkness] = "restaurantId == id + 1 + 6? 'mouseOver' : 'mouseOut' ">
+      <div class = "restaruant-name" [@nameDisappear] = "restaruantId == id + 1 + 6? 'mouseOver' : 'mouseOut' ">{{restaurant.name}}</div>
+    </div>
+  </div>
+
+  <div class = "category-name row">Kiwi</div>
+  <div class = 'row'>
+    <div class = 'col-md-6 col-sm-12 col-12 restaruant-item' (click) = "onVisit(id + 1 + 12)" (mouseover) = "onVisit(id + 1 + 12)" *ngFor = 'let restaurant of restaurants; index as id' [routerLink] = "['/', { outlets: {appRight: ['restaurant-info', id + 1] } }]">
+      <img [src] = " '../../assets/images/' + restaurant.image" [@imageDarkness] = "restaurantId == id + 1 + 12? 'mouseOver' : 'mouseOut' ">
+      <div class = "restaruant-name" [@nameDisappear] = "restaruantId == id + 1 + 12? 'mouseOver' : 'mouseOut' ">{{restaurant.name}}</div>
+    </div>
+  </div>
+
+  <div class = "category-name row">American</div>
+  <div class = 'row'>
+    <div class = 'col-md-6 col-sm-12 col-12 restaruant-item' (click) = "onVisit(id + 1 + 18)" (mouseover) = "onVisit(id + 1 + 18)" *ngFor = 'let restaurant of restaurants; index as id' [routerLink] = "['/', { outlets: {appRight: ['restaurant-info', id + 1] } }]">
+      <img [src] = " '../../assets/images/' + restaurant.image" [@imageDarkness] = "restaurantId == id + 1 + 18? 'mouseOver' : 'mouseOut' ">
+      <div class = "restaruant-name" [@nameDisappear] = "restaruantId == id + 1 + 18? 'mouseOver' : 'mouseOut' ">{{restaurant.name}}</div>
+    </div>
+  </div>
+
+</div>
+
+

@@ -17,7 +17,7 @@ export class RestuarantsService {
     return this.http.get(this.apiURL);
   }
 
-
+/*
   public createRestaurant(restaurant: Restaurant){
     console.log(restaurant);
     return this.http.post(`/restaurant/create`, restaurant)
@@ -29,6 +29,6 @@ export class RestuarantsService {
         return data;
       }));   
   }
-
+*/
 
 }
