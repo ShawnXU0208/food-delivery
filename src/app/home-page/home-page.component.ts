@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { Router } from "@angular/router";
+
 
 //import { restuarants } from '../../assets/restuarants_sample';
 import { RestuarantsService } from '../services/restuarants.service';
@@ -38,10 +41,14 @@ export class HomePageComponent implements OnInit {
   logInfo: any;
   userObj: any;
 
+  searchBar: FormGroup;
+
   constructor(
     private restuarantsService: RestuarantsService,
     private globalDataService: GlobalDataService,
-    private currentUserService: CurrentUserService
+    private currentUserService: CurrentUserService,
+    private formBuilder: FormBuilder,
+    private router: Router
   ){
     this.globalDataService.changeExpandPrimary(false);
 
@@ -59,10 +66,18 @@ export class HomePageComponent implements OnInit {
         console.log(data);
         this.restuarants = data;
       });
+
+    this.searchBar = this.formBuilder.group({
+      queryInput: ['', Validators.required]
+    });
   }
 
   clickButton(number){
     this.buttonClicked = number;
+  }
+
+  onSubmit(){
+    this.router.navigate(['/', { outlets: {primary: ['restaurant-list'],appRight: ['restaurant-info', 1] } }]);
   }
 
 
