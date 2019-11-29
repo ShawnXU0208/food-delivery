@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { FormAlertsService } from '../../services/form-alerts.service';
@@ -8,7 +8,7 @@ import { FormAlertsService } from '../../services/form-alerts.service';
   templateUrl: './form-alerts.component.html',
   styleUrls: ['./form-alerts.component.css']
 })
-export class FormAlertsComponent implements OnInit, OnDestroy {
+export class FormAlertsComponent implements OnInit {
 
   message: any;
   cssClass;

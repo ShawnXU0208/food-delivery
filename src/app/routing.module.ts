@@ -3,7 +3,6 @@ import { ModuleWithProviders } from "@angular/core";
 
 import { UserFormComponent } from './user-form/user-form.component';
 import { HomePageComponent } from './home-page/home-page.component';
-import { RestuarantDetailComponent } from './restuarant-detail/restuarant-detail.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { CheckoutSideComponent } from './checkout-side/checkout-side.component';
 import { RestaurantDashboardComponent } from './restaurant-dashboard/restaurant-dashboard.component';

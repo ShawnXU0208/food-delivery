@@ -12,7 +12,7 @@ export class RestaurantDashboardComponent implements OnInit {
 
   restaurantInfoForm: FormGroup;
 
-  imageData: file = null;
+  imageData: File = null;
   previewURL: any = null;
   submitted = false;
 
@@ -66,7 +66,7 @@ export class RestaurantDashboardComponent implements OnInit {
     this.submitted = true; 
     console.log(this.submitted);
     const formData = new FormData();
-    formData.append('file', this.fileData);
+    //formData.append('file', this.fileData);
     /*
     this.http.post('url/to/your/api', formData)
       .subscribe(res => {

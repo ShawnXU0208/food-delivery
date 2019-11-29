@@ -42,7 +42,7 @@ export class Customer {
   }
 
   public setPhone(phoneNumber: string){
-    this.phone = phone;
+    this.phone = phoneNumber;
   }
 
   public getPhone(): string{

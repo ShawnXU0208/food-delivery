@@ -28,10 +28,10 @@ export class DriverService {
       .pipe(map(data => {
 
         let loggedUser = {
-          firstName: data.firstName,
-          lastName: data.lastName,
-          email: data.email,
-          phone: data.phone
+          firstName: data['firstName'],
+          lastName: data['lastName'],
+          email: data['email'],
+          phone: data['phone']
         };
 
         localStorage.setItem("currentUser", JSON.stringify(loggedUser));

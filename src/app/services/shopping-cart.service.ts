@@ -46,7 +46,7 @@ export class ShoppingCartService {
     for(let item of this.cartItems){
       this.totalPrice += item.price * item.number;
     }
-    this.totalPrice = this.totalPrice.toFixed(2);
+    this.totalPrice = parseFloat(this.totalPrice.toFixed(2));
   }
 
 

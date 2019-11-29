@@ -24,7 +24,7 @@ export class Restaurant {
     this.restaurantTypes = types;
     this.restaurantIntro = intro;
 
-    localStorage.setItem("restaurants", []);
+    localStorage.setItem("restaurants", '');
 
     const number = localStorage.getItem("restaurants").length;
     this.restaurantId = number + 1;
