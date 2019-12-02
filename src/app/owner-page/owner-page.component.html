@@ -1,0 +1,18 @@
+
+<div style="padding: 17% 20% 0 20%;">
+  <h2 class = "text-white">Hi Shawn Xu</h2>
+  <small class = "text-muted">Welcome to Food delivery, you can manage your restaurants here</small>
+
+  <p class = "text-white" style = "font-size: 17px; margin-top: 15%;">Your Restaurants</p>
+
+  <div class = "restaurants-list">
+
+    <button *ngFor = "let restaurant of restaruantsInfo" [@selectRestaurant] = "selected == restaurant.id? 'selected' : 'unselected' " (click) = "select(restaurant.id)" [routerLink] = "['/', { outlets: {appRight: ['dashboard', restaurant.id] } }]">
+      <p class = "title">{{restaurant.name}}</p>
+      <small class = "address">{{restaurant.address}}</small>
+    </button>
+
+  </div>
+
+  <button class = "add" [@selectRestaurant] = "selected == 0? 'selected' : 'unselected' " (click) = "select(0)" [routerLink] = "['/', { outlets: {appRight: ['dashboard', 0] } }]">New Restaurant</button>
+</div>

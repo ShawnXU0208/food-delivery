@@ -243,7 +243,8 @@ export class UserFormComponent implements OnInit {
               this.formAlertService.successMessage("welcome back " + data.firstName);
 
               setTimeout(function(){
-                window.location.href = "/dashboard";
+                window.location.href = "/dashboard(appRight:dashboard/1)";
+                //this.router.navigate(['/', { outlets: {primary: ['dashboard'],appRight: ['dashboard'] } }]);
               }, 1000);
             },
             error =>{
@@ -270,7 +271,8 @@ export class UserFormComponent implements OnInit {
               this.formAlertService.successMessage("new restaurant owner registration successful");
 
               setTimeout(function(){
-                window.location.href = "/dashboard";
+                window.location.href = "/dashboard(appRight:dashboard/1)";
+                //this.router.navigate(['/', { outlets: {primary: ['dashboard'],appRight: ['dashboard'] } }]);
               }, 1000);
             },
             error =>{

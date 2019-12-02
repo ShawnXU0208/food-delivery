@@ -1,22 +1,6 @@
-<app-header></app-header>
-
 <div class = "container dashboard">
-  <div class = "row">
-    <div class = "col-12 col-lg-3 dashboard-left">
-      <div class = "page-title">Restaurant Create</div>
-      <div class = "container" style = "padding: 0;">
-        <div class = "row">
-          <div class = "col-12">
-            <button><i class="fas fa-book-open"></i> Restaurant Info</button>
-          </div>
-          <div class = "col-12">
-            <button><i class="fas fa-utensils"></i> Menu Categories</button>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <form class = "col-12 col-lg-9 dashboard-right" [formGroup] = "restaurantInfoForm" (ngSubmit)="onSubmit(restaurantInfoForm.value)">
+    <form [formGroup] = "restaurantInfoForm" (ngSubmit)="onSubmit(restaurantInfoForm.value)">
       <div class = "restaurant-image-section container">
         <div class = "row">
           <div class = "image-preview col-12 col-lg-6" [ngClass] = "{ 'my-invalid': submitted && !previewURL }">
@@ -62,7 +46,7 @@
           <div class = "row mt-1">
             <div class = "col-8 range-slider">
               <span class = "limit-point">00:00</span>
-              <input type="range" class="form-control" min="0" max="24" step="0.5" value="0" [(ngModel)] = "openTime" [ngModelOptions]="{standalone: true}">
+              <input type="range" class="form-control" min="0" max="24" step="0.5" value="0" [(ngModel)] = "openTime" formControlName = "restaurantOpenSlider" id = "restaurantOpenSlider">
               <span class = "limit-point">24:00</span>
             </div>
 
@@ -72,7 +56,7 @@
           </div>
         </div>
         <div class = "small text-danger" *ngIf = "!openTime && submitted">
-          <div *ngIf = "!openTime && submitted">Opening tiime is required</div>
+          <div *ngIf = "!openTime && submitted">Opening time is required</div>
         </div>
       </div>
 
@@ -82,7 +66,7 @@
           <div class = "row mt-1">
             <div class = "col-8 range-slider">
               <span class = "limit-point">00:00</span>
-              <input type="range" class="form-control" min="0" max="24" step="0.5" value="0" [(ngModel)] = "closeTime" [ngModelOptions]="{standalone: true}">
+              <input type="range" class="form-control" min="0" max="24" step="0.5" value="0" [(ngModel)] = "closeTime" formControlName = "restaurantCloseSlider" id = "restaurantCloseSlider">
               <span class = "limit-point">24:00</span>
             </div>
 
@@ -102,14 +86,7 @@
        <div class = "input-title"> Restaurant Types</div>
         <div>
           <div class = "types">
-            <button type = "button" class = "type-select-item" (click) = "typeItemToggle($event)">Chinese</button>
-            <button type = "button" class = "type-select-item" (click) = "typeItemToggle($event)">Indian</button>
-            <button type = "button" class = "type-select-item" (click) = "typeItemToggle($event)">American</button>
-            <button type = "button" class = "type-select-item" (click) = "typeItemToggle($event)">Europe</button>
-            <button type = "button" class = "type-select-item" (click) = "typeItemToggle($event)">Kiwi</button>
-            <button type = "button" class = "type-select-item" (click) = "typeItemToggle($event)">Turkey</button>
-            <button type = "button" class = "type-select-item" (click) = "typeItemToggle($event)">Japanese</button>
-            <button type = "button" class = "type-select-item" (click) = "typeItemToggle($event)">Korean</button>
+            <button type = "button" class = "type-select-item" [ngClass] = "ifSelected(types[typeId])" (click) = "typeItemToggle($event)" *ngFor = "let type of types; index as typeId">{{types[typeId]}}</button>
           </div>
           <input type = "text" class = "form-control mt-2" id = "restaurantTypes" formControlName = "restaurantTypes" readonly [value] = "selectedTypes" [ngClass] = "{ 'is-invalid': submitted && !selectedTypes.length }" style = "background: none;">
           
@@ -136,6 +113,5 @@
 
 
     </form>
-  </div>
 
 </div>

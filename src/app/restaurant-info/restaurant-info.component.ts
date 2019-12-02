@@ -26,7 +26,7 @@ export class RestaurantInfoComponent implements OnInit {
         this.id = params.id;
         this.restuarantDetailService.getRestuarantInfo(this.id)
           .subscribe((data: any[]) => {
-            console.log(data);
+            //console.log(data);
             this.restaurantInfo = data;
 
             //assign rate stars

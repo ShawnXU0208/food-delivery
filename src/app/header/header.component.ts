@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition, keyframes } from '@angular/animations';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
+
 
 import * as globalImgs from '../../assets/images/image.data';
 import { CustomerService } from '../services/customer.service';
@@ -48,6 +51,8 @@ export class HeaderComponent implements OnInit {
   userObj: any;
   active = false;
 
+  dashboardPage: boolean = false;
+
   public logoImgSrc: string = globalImgs.logoImg;
 
 
@@ -55,13 +60,24 @@ export class HeaderComponent implements OnInit {
     private customerService: CustomerService,
     private driverService: DriverService,
     private ownerService: OwnerService,
-    private currentUserService: CurrentUserService
+    private currentUserService: CurrentUserService,
+    private router: Router
   ){
+
     this.logInfo = this.currentUserService.currentStatus();
     //console.log(this.logInfo.isLogged);
     if(this.logInfo.isLogged){
       this.userObj = JSON.parse(this.logInfo.currentUser);
     }
+
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        //console.log(event.url);
+        if(event.url.includes('dashboard')){
+          this.dashboardPage = true;
+        }
+      });
   }
 
 

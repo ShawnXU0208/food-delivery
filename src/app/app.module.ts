@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
@@ -34,6 +34,7 @@ import { PopularShowComponent } from './popular-show/popular-show.component';
 import { RestaurantInfoComponent } from './restaurant-info/restaurant-info.component';
 import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
 import { CheckoutSideComponent } from './checkout-side/checkout-side.component';
+import { OwnerPageComponent } from './owner-page/owner-page.component';
 
 
 @NgModule({
@@ -95,7 +96,8 @@ import { CheckoutSideComponent } from './checkout-side/checkout-side.component';
     PopularShowComponent,
     RestaurantInfoComponent,
     RestaurantListComponent,
-    CheckoutSideComponent
+    CheckoutSideComponent,
+    OwnerPageComponent
   ],
 
   bootstrap:    [ AppComponent ],
@@ -106,7 +108,8 @@ import { CheckoutSideComponent } from './checkout-side/checkout-side.component';
       provide: HTTP_INTERCEPTORS,
       useClass: RequestsHandler,
       multi: true
-    }
+    },
+    TimePipe
   ]
 })
 export class AppModule { }

@@ -11,6 +11,7 @@ import { RestaurantListComponent } from './restaurant-list/restaurant-list.compo
 import { RestaurantInfoComponent } from './restaurant-info/restaurant-info.component';
 import { RestuarantDetailComponent } from './restuarant-detail/restuarant-detail.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { OwnerPageComponent } from './owner-page/owner-page.component';
 
 
 const routes: Routes = [
@@ -30,6 +31,7 @@ const routes: Routes = [
   {path: 'restaurant-list', component: RestaurantListComponent},
   {path: 'restaurant-menu/:id', component: RestuarantDetailComponent},
   {path: 'checkout', component: CheckoutComponent},
+  {path: 'dashboard', component: OwnerPageComponent},
   {path: '', component: PopularShowComponent, outlet: 'appRight'},
   {path: 'customer-register', component: UserFormComponent, outlet: 'appRight'},
   {path: 'driver-register', component: UserFormComponent, outlet: 'appRight'},
@@ -40,6 +42,7 @@ const routes: Routes = [
   {path: 'restaurant-info/:id', component: RestaurantInfoComponent, outlet: 'appRight'},
   {path: 'shopping-cart', component: ShoppingCartComponent, outlet: 'appRight'},
   {path: 'checkout', component: CheckoutSideComponent, outlet: 'appRight'},
+  {path: 'dashboard/:id', component: RestaurantDashboardComponent, outlet: 'appRight'},
 ];
 
 export const routingModule: ModuleWithProviders = RouterModule.forRoot(routes);

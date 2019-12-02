@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { RouterOutlet } from '@angular/router';
 
 import { GlobalDataService } from './services/global-data.service';
+import { pageSlideIn } from './animations'
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: [ './app.component.css' ]
+  styleUrls: [ './app.component.css' ],
+  animations: [pageSlideIn]
 })
 export class AppComponent{
   subscription: Subscription;
@@ -20,5 +23,6 @@ export class AppComponent{
       }
     );
   }
+
 
 }

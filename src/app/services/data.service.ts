@@ -9,7 +9,7 @@ export class DataService implements InMemoryDbService{
     const restuarants = [
       { id: 1,
         name: 'Dragon Garden Chinese Restaurant',
-        tags: ['chinese', 'asia', 'cantonese'], 
+        tags: ['Chinese', 'Asian', 'Kiwi'], 
         deliverFee: 6.99,
         deliverTime: "15-20min",
         open: 9,
@@ -25,7 +25,7 @@ export class DataService implements InMemoryDbService{
       {
         id: 2,
         name: 'Subway (Bush Inn)',
-        tags: ['chinese', 'asia', 'cantonese'],
+        tags: ['American', 'Kiwi', 'Europe'],
         deliverFee: 6.99,
         deliverTime: "10-15min",
         open: 10,
@@ -41,7 +41,7 @@ export class DataService implements InMemoryDbService{
       {
         id: 3,
         name: 'Dubba Dubba',
-        tags: ['chinese', 'asia', 'cantonese'],
+        tags: ['Chinese', 'Turkey', 'Europe'],
         deliverFee: 6.99,
         deliverTime: "15-20min",
         open: 8,
@@ -57,7 +57,7 @@ export class DataService implements InMemoryDbService{
       {
         id: 4,
         name: 'Wycola Turkish Kebab',
-        tags: ['chinese', 'asia', 'cantonese'],
+        tags: ['Turkey', 'Europe'],
         deliverFee: 6.99,
         deliverTime: "15-24min",
         open: 9,
@@ -73,7 +73,7 @@ export class DataService implements InMemoryDbService{
       {
         id: 5,
         name: 'Velvet Burger (Riccarton)',
-        tags: ['chinese', 'asia', 'cantonese'],
+        tags: ['Kiwi', 'Europe'],
         deliverFee: 6.99,
         deliverTime: "18-24min",
         open: 12,
@@ -89,7 +89,7 @@ export class DataService implements InMemoryDbService{
       {
         id: 6,
         name: 'Tuk Tuk Thai',
-        tags: ['chinese', 'asia', 'cantonese'],
+        tags: ['Asian', 'Japanese'],
         deliverFee: 6.99,
         deliverTime: "15-20min",
         open: 9,

@@ -94,12 +94,17 @@
   </div>
 </nav>
 -->
-<button class = "controller" (click) = "onOver()" [@flip] = "active? 'active' : 'inactive' ">
+<button class = "controller" (click) = "onOver()" [@flip] = "active? 'active' : 'inactive' " *ngIf = "!dashboardPage">
   <i class="fas fa-power-off" *ngIf = "!active; else closeIcon"></i>
   <ng-template #closeIcon>
     <i class="fas fa-times"></i>
   </ng-template>
 </button>
+
+<button class = "controller" (click) = "logout()" [@flip] = "active? 'active' : 'inactive' " *ngIf = "dashboardPage">
+  <i class="fas fa-power-off"></i>
+</button>
+
 <div class = "header" [@headerActive] = "active? 'active' : 'inactive' " (click) = "onOver()">
   <div class = "header-body" *ngIf = "active">
     <button id = "home" routerLink = ""><i class="fas fa-home"></i></button>
