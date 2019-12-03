@@ -49,8 +49,9 @@
 
 .restaurant-image-section .image-preview{
   height: 170px;
-  width: 370px;
+  width: 300px;
   padding: 0;
+  max-width: 300px;
 }
 
 .restaurant-image-section .image-preview img{
@@ -131,6 +132,18 @@ input[type = range]{
   background-color: #de85bd;
   color: white;
   border: none;
+}
+
+.toggle-icon{
+  border: none;
+  width: 40px;
+  height: 60px;
+  background: none;
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  transform: translate(0%, -50%);
+  font-size: 30px;
 }
 
 @media only screen and (max-width: 992px){

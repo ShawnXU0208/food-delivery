@@ -111,6 +111,11 @@
  
       <button type = "submit" class = "btn btn-primary mt-3">Save Changes</button>
 
+      <button type = "button" class = "toggle-icon" (click) = "toggleLayout()">
+        <i class="fas fa-angle-double-left" *ngIf = "!layoutExpand"></i>
+        <i class="fas fa-angle-double-right" *ngIf = "layoutExpand"></i>
+      </button>
+
 
     </form>
 

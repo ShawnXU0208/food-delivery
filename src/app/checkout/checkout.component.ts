@@ -17,7 +17,7 @@ export class CheckoutComponent implements OnInit {
     private shoppingCartService: ShoppingCartService,
     private globalDataService: GlobalDataService
   ) {
-    this.globalDataService.changeExpandPrimary(true);
+    this.globalDataService.changeLayout(2);
   }
 
   ngOnInit() {

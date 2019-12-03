@@ -41,13 +41,14 @@ export class RestuarantDetailComponent implements OnInit {
   ){
     this.id = +this.route.snapshot.paramMap.get('id');
     this.menuCategories = new Set();
-    this.globalDataService.changeExpandPrimary(true);
+    //this.globalDataService.changeExpandPrimary(true);
   }
 
   ngOnInit() {
+    this.globalDataService.changeLayout(2);
+
     this.restuarantDetailService.getRestuarantInfo(this.id)
       .subscribe((data: any[]) => {
-        console.log(data);
         this.restuarantInfo = data;
       });
 

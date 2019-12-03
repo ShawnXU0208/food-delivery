@@ -34,3 +34,30 @@ button.add{
  float: right;
  margin-top: 10px;
 }
+
+.btn-list{
+  padding: 5%;
+  color: #b1b1b3;
+}
+
+.btn-list button{
+  border: none;
+  background: none;
+  margin: 10px 0px;
+  display: inline-block;
+  width: 100%;
+  text-align: left;
+  color: #b1b1b3;
+  padding: 5px 0px 5px 20px;
+}
+
+.btn-list button.active{
+  background-color: white;
+  border-radius: 15px;
+  color: black;
+}
+
+.btn-list button i{
+  margin-right: 30px;
+  color: #919191;
+}

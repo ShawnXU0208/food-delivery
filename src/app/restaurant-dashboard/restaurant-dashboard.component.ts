@@ -3,9 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AbstractControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 import { RestuarantDetailService } from '../services/restuarant-detail.service';
 import {TimePipe} from '../time.pipe';
+import { GlobalDataService } from '../services/global-data.service';
 
 @Component({
   selector: 'app-restaurant-dashboard',
@@ -21,6 +23,7 @@ export class RestaurantDashboardComponent implements OnInit {
   imageData: File = null;
   previewURL: any = null;
   submitted = false;
+  layoutExpand: boolean;
 
 
   selectedTypes: string[] = [];
@@ -29,14 +32,22 @@ export class RestaurantDashboardComponent implements OnInit {
   openTime = null;
   closeTime = null;
 
+  subscription: Subscription;
+
   constructor(
     private http: HttpClient,
     private renderer: Renderer2,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private restaurantDetailService: RestuarantDetailService,
-    private timePipe: TimePipe
+    private timePipe: TimePipe,
+    private globalDataService: GlobalDataService
   ) {
+     if(this.globalDataService.getCurrentLayout() == 1){
+       this.layoutExpand = false;
+     }else{
+       this.layoutExpand = true;
+     }
 
   }
 
@@ -52,7 +63,6 @@ export class RestaurantDashboardComponent implements OnInit {
       restaurantOpenSlider: [''],
       restaurantCloseSlider: ['']
     });
-
 
     this.route.params.subscribe(params => {
       this.selectedTypes = [];
@@ -162,9 +172,17 @@ export class RestaurantDashboardComponent implements OnInit {
     }
 
     this.restaurantInfoForm.controls.restaurantTypes.setValue(this.selectedTypes);
-
-
   
+  }
+
+  toggleLayout(){
+    //this.globalDataService.changeExpandPrimary(true);
+    this.layoutExpand = !this.layoutExpand;
+    if(this.layoutExpand){
+      this.globalDataService.changeLayout(3);
+    }else{
+      this.globalDataService.changeLayout(1);
+    }
   }
 
 

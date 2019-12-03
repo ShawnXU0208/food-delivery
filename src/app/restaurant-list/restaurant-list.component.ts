@@ -50,10 +50,11 @@ export class RestaurantListComponent implements OnInit {
     private restaurantsService: RestuarantsService,
     private globalDataService: GlobalDataService
   ) {
-    this.globalDataService.changeExpandPrimary(false);
+    //this.globalDataService.changeExpandPrimary(false);
   }
 
   ngOnInit() {
+    this.globalDataService.changeLayout(1);
     this.restaurantsService.getRestuarants()
       .subscribe((data: any[]) => {
         //console.log(data);

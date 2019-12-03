@@ -12,26 +12,7 @@ import { CurrentUserService } from '../services/current-user.service';
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.css'],
-  animations: [
-
-    // animation triggers go here
-    trigger("clickButton", [
-      state("unclicked", style({
-        background: 'none',
-        color: '#74b9ff',
-        border: '2px solid #74b9ff',
-      })),
-      state("clicked", style({
-        backgroundColor: '#74b9ff',
-        border: 'none',
-        color: 'white',
-      })),
-      transition("unclicked <=> clicked", [
-        animate('0.2s'),
-      ])
-    ]),
-  ]
+  styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
 
@@ -40,6 +21,8 @@ export class HomePageComponent implements OnInit {
   buttonClicked;
   logInfo: any;
   userObj: any;
+
+  layoutExpand: boolean;
 
   searchBar: FormGroup;
 
@@ -50,8 +33,12 @@ export class HomePageComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router
   ){
-    this.globalDataService.changeExpandPrimary(false);
 
+    if(this.globalDataService.getCurrentLayout() != 1){
+      this.layoutExpand = true;
+    }else{
+      this.layoutExpand = false;
+    }
     //fetch logged user information
     this.logInfo = this.currentUserService.currentStatus();
     //console.log(this.logInfo.isLogged);
@@ -61,6 +48,8 @@ export class HomePageComponent implements OnInit {
   }
 
   ngOnInit() {
+    //this.globalDataService.changeLayout(1);
+
     this.restuarantsService.getRestuarants()
       .subscribe((data: any[]) => {
         console.log(data);

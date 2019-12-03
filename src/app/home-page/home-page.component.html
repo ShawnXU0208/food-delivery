@@ -1,4 +1,4 @@
-<div class = "home">
+<div class = "home" *ngIf = "!layoutExpand">
   <h2 class = "text-white">Food Delivery</h2>
   <small class = "text-muted">Your Favorite Food, Delivered with US.</small>
 
@@ -14,6 +14,7 @@
 
 
   <div *ngIf = "!logInfo.isLogged; else loggedPage">
+    <!--
     <div id = "users-group">
       <div class = "user-btns" style = "margin-top: 25%;">
         <button type = "button" class = "action-btn" data-toggle = "collapse" data-target = "#sign-in-btns">Sign In</button>
@@ -37,6 +38,22 @@
         </div>
       </div>
     </div>
+    [routerLink] = "['/', { outlets: {primary: ['/'], appRight: ['customer-register'] } }]"
+    -->
+    <div class = "users-group" style = "margin-top: 60px;">
+      <button type = "button" class = "action-btn" [routerLink] = "[{ outlets: {appRight: ['customer-register'] } }]">Click me</button>
+      <p class = "side-text"> To get a food delivered</p>
+    </div>
+
+    <div class = "users-group">
+      <button type = "button" class = "action-btn" [routerLink] = "[{ outlets: {appRight: ['driver-register'] } }]">Click me</button>  
+      <p class = "side-text"> To become a driver</p>
+    </div>
+
+    <div style = "margin: 10% 0% 0% 0%;">
+      <span style = "color: white; font-size: 18px;">Or </span>
+      <a class = "owner-register" [routerLink] = "[{ outlets: {appRight: ['owner-register'] } }]">Join Us</a> 
+    </div>   
   </div>
 
   <ng-template #loggedPage>
@@ -45,4 +62,8 @@
       <p class = "name">{{userObj.firstName}} {{userObj.lastName}}</p>
     </div>
   </ng-template>
+</div>
+
+<div *ngIf = "layoutExpand">
+  haha
 </div>

@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <div class = "container-fluid app-background">
-  <div class = "row" *ngIf = "!expand; else expandLayout">
+  <div class = "row" *ngIf = "layoutMode === 1; else secondMode">
     <div class = "col-lg-6 col-12 app-left">
       <router-outlet></router-outlet>
     </div>
@@ -10,8 +10,9 @@
     </div>
   </div>
 
-  <ng-template #expandLayout>
-    <div class = "row">
+
+  <ng-template #secondMode>
+    <div class = "row" *ngIf = "layoutMode === 2; else thirdMode">
       <div class = "col-lg-8 col-12 app-left">
         <router-outlet></router-outlet>
       </div>
@@ -21,6 +22,26 @@
     </div>  
   </ng-template>
 
+  <ng-template #thirdMode>
+    <div class = "row">
+      <div class = "col-lg-2 col-12 app-left">
+        <router-outlet></router-outlet>
+      </div>
+      <div class = "col-lg-10 col-12 app-right">
+        <router-outlet name = 'appRight'></router-outlet>
+      </div>
+    </div>  
+  </ng-template>
+<!--
+  <div class = "row" *ngIf = "layoutMode === 3">
+    <div class = "col-lg-2 col-12 app-left">
+      <router-outlet></router-outlet>
+    </div>
+    <div class = "col-lg-10 col-12 app-right">
+      <router-outlet name = 'appRight'></router-outlet>
+    </div>
+  </div>  
+-->
 
 </div>
 
