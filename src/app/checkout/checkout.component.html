@@ -1,30 +1,39 @@
 
-<div class = "checkout-body">
+<div class = "checkout-body container">
+  <div class = "row">
+    <div class = "cart-table col-8">
+      <table class = "table table-borderless">
+        <thead>
+          <tr>
+            <th class = "w-25">PRODUCT</th>
+            <th class = "w-25">PRICE</th>
+            <th class = "w-25">QTY</th>
+            <th class = "w-25">TOTAL</th>
+          </tr> 
+        </thead>
 
-  <div class = "cart-table">
-    <table class = "table table-borderless">
-      <thead>
-        <tr>
-          <th class = "w-25">PRODUCT</th>
-          <th class = "w-25">PRICE</th>
-          <th class = "w-25">QTY</th>
-          <th class = "w-25">TOTAL</th>
-        </tr> 
-      </thead>
+        <tbody>
 
-      <tbody>
+          <tr *ngFor = "let item of cartItems">
+            <td class = "align-middle">
+              <img [src] = "'../../assets/images/' + item.image">
+              <div class = "name small">{{item.name}}</div>
+            </td>
+            <td class = "align-middle small">{{item.price | currency}}</td>
+            <td class = "align-middle small">{{item.quantity}}</td>
+            <td class = "align-middle small">{{item.price * item.quantity | currency}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-        <tr *ngFor = "let item of cartItems">
-          <td class = "align-middle">
-            <img [src] = "'../../assets/images/' + item.image">
-            <div class = "name small">{{item.name}}</div>
-          </td>
-          <td class = "align-middle small">{{item.price | currency}}</td>
-          <td class = "align-middle small">{{item.quantity}}</td>
-          <td class = "align-middle small">{{item.price * item.quantity | currency}}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class = "checkout-side col-4">
+      <hr>
+      <div class = "small" style ="color: grey; font-weight: 400;">CART TOTAL <span class = "total-price">{{total | currency}}</span></div>
+
+      <a class = "checkout-btn confirm align-middle" routerLink = "" (click) = "reset()">CHECKOUT</a>
+      <a class = "checkout-btn cancel align-middle" [routerLink] = "['/', { outlets: {primary: ['restaurant-menu', 1],appRight: ['shopping-cart'] } }]">CANCEL</a>
+    </div>
   </div>
 
 </div>

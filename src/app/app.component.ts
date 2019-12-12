@@ -4,7 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { Router, NavigationEnd } from "@angular/router";
 import { filter } from 'rxjs/operators';
 
-import { GlobalDataService } from './services/global-data.service';
+//import { GlobalDataService } from './services/global-data.service';
 import { pageSlideIn } from './animations';
 import { PageLayoutService } from './services/page-layout.service';
 
@@ -24,7 +24,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewChecked{
   layoutMode: number;
 
   constructor(
-    private globlaDataService: GlobalDataService,
+    //private globlaDataService: GlobalDataService,
     private ref: ChangeDetectorRef,
     private router: Router,
     private users: UserService,
@@ -50,16 +50,17 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewChecked{
   }
 
   ngOnInit(){
-
+/*
     this.subscription = this.globlaDataService.getLayout().subscribe(
       data =>{
         this.layoutMode = data.mode;
         //console.log(this.layoutMode);
       }
     );
-
+*/
     this.urlSubscription = this.pageLayoutService.getCurrentUrl().subscribe(data => {
-      console.log(data.currentUrl);
+      this.layoutMode = data.layoutMode;
+      console.log(this.layoutMode);
     });
   }
 

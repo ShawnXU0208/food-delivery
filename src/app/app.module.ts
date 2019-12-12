@@ -32,7 +32,6 @@ import { routingModule } from "./routing.module";
 import { PopularShowComponent } from './popular-show/popular-show.component';
 import { RestaurantInfoComponent } from './restaurant-info/restaurant-info.component';
 import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
-import { CheckoutSideComponent } from './checkout-side/checkout-side.component';
 import { OwnerPageComponent } from './owner-page/owner-page.component';
 
 
@@ -94,7 +93,6 @@ import { OwnerPageComponent } from './owner-page/owner-page.component';
     PopularShowComponent,
     RestaurantInfoComponent,
     RestaurantListComponent,
-    CheckoutSideComponent,
     OwnerPageComponent
   ],
 

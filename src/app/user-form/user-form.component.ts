@@ -5,7 +5,6 @@ import { Router } from "@angular/router";
 
 import { UserService, Customer, Driver, Owner } from '../services/user.service';
 import { FormAlertsService } from '../services/form-alerts.service';
-import { GlobalDataService } from '../services/global-data.service';
 
 @Component({
   selector: 'app-user-form',
@@ -30,13 +29,9 @@ export class UserFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    //private customerService: CustomerService,
-    //private driverService: DriverService,
-    //private ownerService: OwnerService,
     private usersService: UserService,
     private router: Router,
-    private formAlertService: FormAlertsService,
-    private globalDataService: GlobalDataService
+    private formAlertService: FormAlertsService
   ){
 
     switch (true) {
@@ -44,37 +39,31 @@ export class UserFormComponent implements OnInit {
       case this.router.url.includes("customer-login"):
         this.formMode.role = "customer";
         this.formMode.action = "login";
-        this.globalDataService.changeLayout(1);
         break;
 
       case this.router.url.includes("customer-register"):
         this.formMode.role = "customer";
         this.formMode.action = "register";
-        this.globalDataService.changeLayout(1);
         break;
 
       case this.router.url.includes("driver-login"):
         this.formMode.role = "driver";
         this.formMode.action = "login";
-        this.globalDataService.changeLayout(1);
         break;
 
       case this.router.url.includes("driver-register"):
         this.formMode.role = "driver";
         this.formMode.action = "register";
-        this.globalDataService.changeLayout(1);
         break;
 
       case this.router.url.includes("owner-login"):
         this.formMode.role = "owner";
         this.formMode.action = "login";
-        this.globalDataService.changeLayout(3);
         break;
 
       case this.router.url.includes("owner-register"):
         this.formMode.role = "owner";
         this.formMode.action = "register";
-        this.globalDataService.changeLayout(3);
         break;
     }
   }

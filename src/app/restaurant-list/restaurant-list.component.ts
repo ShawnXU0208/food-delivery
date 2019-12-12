@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition, query } from '@angular/animations';
 
 import { RestuarantsService } from '../services/restuarants.service';
-import { GlobalDataService } from '../services/global-data.service';
 
 @Component({
   selector: 'app-restaurant-list',
@@ -48,13 +47,10 @@ export class RestaurantListComponent implements OnInit {
 
   constructor(
     private restaurantsService: RestuarantsService,
-    private globalDataService: GlobalDataService
-  ) {
-    //this.globalDataService.changeExpandPrimary(false);
-  }
+  ) {}
 
   ngOnInit() {
-    this.globalDataService.changeLayout(1);
+    //this.globalDataService.changeLayout(1);
     this.restaurantsService.getRestuarants()
       .subscribe((data: any[]) => {
         //console.log(data);

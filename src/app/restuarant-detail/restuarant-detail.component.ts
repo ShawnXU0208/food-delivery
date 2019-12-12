@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { trigger, state, style, animate, transition, query } from '@angular/animations';
 
-//import { RestuarantDetailService } from '../services/restuarant-detail.service';
 import { RestuarantsService } from '../services/restuarants.service';
-import { GlobalDataService } from '../services/global-data.service';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -40,7 +38,6 @@ export class RestuarantDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private restuarantService: RestuarantsService,
-    private globalDataService: GlobalDataService,
     private userService: UserService
   ){
     this.id = +this.route.snapshot.paramMap.get('id');
@@ -52,11 +49,10 @@ export class RestuarantDetailComponent implements OnInit {
     }else{
       this.customerLogged = false;
     }
-    //this.globalDataService.changeExpandPrimary(true);
   }
 
   ngOnInit() {
-    this.globalDataService.changeLayout(2);
+    //this.globalDataService.changeLayout(2);
 
     this.restuarantService.getRestuarantById(this.id)
       .subscribe((data: any[]) => {

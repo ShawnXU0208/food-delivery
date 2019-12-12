@@ -3,7 +3,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { RestuarantsService } from '../services/restuarants.service';
-import { GlobalDataService } from '../services/global-data.service';
+import { PageLayoutService } from '../services/page-layout.service';
 
 
 @Component({
@@ -37,19 +37,19 @@ export class OwnerPageComponent implements OnInit {
     private restuarantService: RestuarantsService,
     private route: ActivatedRoute,
     private router: Router,
-    private globalDataService: GlobalDataService
+    private pageLayoutService: PageLayoutService
   ) {
     //this.selected = +this.route.snapshot.paramMap.get('id');
     this.selected = +this.router.url.charAt(this.router.url.length - 2);
     //alert(this.selected);
-    if(this.globalDataService.getCurrentLayout() == 1){
+    
+    if(this.pageLayoutService.getLayout() == 1){
       this.layoutExpand = false;
-      this.globalDataService.changeLayout(1);
     }else{
       this.layoutExpand = true;
-      this.globalDataService.changeLayout(3);
     }
-
+    
+    
   }
 
   ngOnInit() {

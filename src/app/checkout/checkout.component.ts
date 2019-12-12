@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { ShoppingCartService } from '../services/shopping-cart.service';
-import { GlobalDataService } from '../services/global-data.service';
 import { RestuarantsService } from '../services/restuarants.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-checkout',
@@ -12,30 +13,40 @@ import { RestuarantsService } from '../services/restuarants.service';
 export class CheckoutComponent implements OnInit {
 
   cartItems: any[] = [];
+  total: number = 0;
   //totalPrice: number = 0;
 
   constructor(
     private shoppingCartService: ShoppingCartService,
-    private globalDataService: GlobalDataService,
-    private restuarantService: RestuarantsService
+    private restuarantService: RestuarantsService,
+    private userService: UserService,
+    private router: Router
   ) {
-    this.globalDataService.changeLayout(2);
+
+    const menuItems = this.shoppingCartService.getSavedCartItems();
+    const userLogged = this.userService.getLoggedUser();
+
+    if(menuItems.length > 0 && userLogged){
+      for(const menuItem of menuItems){
+        let menuId = menuItem.menuId;
+        let quantity = menuItem.quantity;
+        this.restuarantService.getMenuById(menuId).subscribe(menuData => {
+          this.cartItems.push({
+            name: menuData['name'],
+            price: menuData['price'],
+            image: menuData['image'],
+            quantity: quantity
+          });
+          this.total += menuData['price'] * quantity;
+        })
+      }
+    }else{
+      this.router.navigateByUrl("/(appRight:customer-login)");
+    }
   }
 
   ngOnInit() {
-    const menuItems = this.shoppingCartService.getSavedCartItems();
-    for(const menuItem of menuItems){
-      let menuId = menuItem.menuId;
-      let quantity = menuItem.quantity;
-      this.restuarantService.getMenuById(menuId).subscribe(menuData => {
-        this.cartItems.push({
-          name: menuData['name'],
-          price: menuData['price'],
-          image: menuData['image'],
-          quantity: quantity
-        });
-      })
-    }
+
     //this.totalPrice = this.shoppingCartService.getTotalPrice();
   }
 

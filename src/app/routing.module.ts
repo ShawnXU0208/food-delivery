@@ -15,18 +15,7 @@ import { OwnerPageComponent } from './owner-page/owner-page.component';
 
 
 const routes: Routes = [
-/*
-  {path: '', component: HomePageComponent},
-  {path: 'customer/login', component: UserFormComponent},
-  {path: 'customer/register', component: UserFormComponent},
-  {path: 'driver/login', component: UserFormComponent},
-  {path: 'driver/register', component: UserFormComponent},
-  {path: 'owner/login', component: UserFormComponent},
-  {path: 'owner/register', component: UserFormComponent},
-  {path: 'restuarant/:id', component: RestuarantDetailComponent},
-  {path: 'checkout', component: CheckoutComponent},
-  {path: 'dashboard', component: RestaurantDashboardComponent}
-*/
+
   {path: '', component: HomePageComponent},
   {path: 'restaurant-list', component: RestaurantListComponent},
   {path: 'restaurant-menu/:id', component: RestuarantDetailComponent},
@@ -41,8 +30,28 @@ const routes: Routes = [
   {path: 'owner-login', component: UserFormComponent, outlet: 'appRight'},
   {path: 'restaurant-info/:id', component: RestaurantInfoComponent, outlet: 'appRight'},
   {path: 'shopping-cart', component: ShoppingCartComponent, outlet: 'appRight'},
-  {path: 'checkout', component: CheckoutSideComponent, outlet: 'appRight'},
+  //{path: 'checkout', component: CheckoutSideComponent, outlet: 'appRight'},
   {path: 'dashboard/:id', component: RestaurantDashboardComponent, outlet: 'appRight'},
+/*
+  {path: '', component: HomePageComponent},
+  {path: '', component: PopularShowComponent, outlet: 'appRight'},
+  {path: 'customer-login', component: HomePageComponent},
+  {path: 'customer-login', component: UserFormComponent, outlet: 'appRight'},
+  {path: 'customer-register', component: HomePageComponent},
+  {path: 'customer-register', component: UserFormComponent, outlet: 'appRight'},
+  {path: 'driver-login', component: HomePageComponent},
+  {path: 'driver-login', component: UserFormComponent, outlet: 'appRight'},
+  {path: 'driver-register', component: HomePageComponent},
+  {path: 'driver-register', component: UserFormComponent, outlet: 'appRight'},
+  {path: 'owner-login', component: HomePageComponent},
+  {path: 'owner-login', component: UserFormComponent, outlet: 'appRight'},
+  {path: 'owner-register', component: HomePageComponent},
+  {path: 'owner-register', component: UserFormComponent, outlet: 'appRight'},
+  {path: 'restaurants/:id', component: RestaurantListComponent},
+  {path: 'restaurants/:id', component: RestaurantInfoComponent, outlet: 'appRight'},
+  {path: 'restuarants/:id/order', component: RestuarantDetailComponent},
+  {path: 'restuarants/:id/order', component: ShoppingCartComponent, outlet: 'appRight'}
+*/
 ];
 
 export const routingModule: ModuleWithProviders = RouterModule.forRoot(routes);

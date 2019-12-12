@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
 
 import { RestuarantsService } from '../services/restuarants.service';
 import { TimePipe } from '../time.pipe';
-import { GlobalDataService } from '../services/global-data.service';
+import { PageLayoutService } from '../services/page-layout.service';
 
 @Component({
   selector: 'app-restaurant-dashboard',
@@ -41,14 +41,15 @@ export class RestaurantDashboardComponent implements OnInit {
     private route: ActivatedRoute,
     private restuarantService: RestuarantsService,
     private timePipe: TimePipe,
-    private globalDataService: GlobalDataService
+    private pageLayoutService: PageLayoutService
   ) {
-     if(this.globalDataService.getCurrentLayout() == 1){
+    
+     if(this.pageLayoutService.getLayout() == 1){
        this.layoutExpand = false;
      }else{
        this.layoutExpand = true;
      }
-
+    
   }
 
   ngOnInit() {
@@ -135,15 +136,6 @@ export class RestaurantDashboardComponent implements OnInit {
     this.submitted = true; 
     console.log(this.submitted);
     const formData = new FormData();
-    //formData.append('file', this.fileData);
-    /*
-    this.http.post('url/to/your/api', formData)
-      .subscribe(res => {
-        console.log(res);
-        this.uploadedFilePath = res.data.filePath;
-        alert('SUCCESS !!');
-      });
-     */
   }
 
   ifSelected(type){
@@ -165,10 +157,8 @@ export class RestaurantDashboardComponent implements OnInit {
         this.selectedTypes.splice(index, 1);
       }
 
-      //this.renderer.removeClass(event.target, 'selected');
     }else{
       this.selectedTypes.push(type);
-      //this.renderer.addClass(event.target, 'selected');
     }
 
     this.restaurantInfoForm.controls.restaurantTypes.setValue(this.selectedTypes);
@@ -176,12 +166,11 @@ export class RestaurantDashboardComponent implements OnInit {
   }
 
   toggleLayout(){
-    //this.globalDataService.changeExpandPrimary(true);
     this.layoutExpand = !this.layoutExpand;
     if(this.layoutExpand){
-      this.globalDataService.changeLayout(3);
+      this.pageLayoutService.changeLayout(3);
     }else{
-      this.globalDataService.changeLayout(1);
+      this.pageLayoutService.changeLayout(1);
     }
   }
 

@@ -47,5 +47,5 @@
   </div>
 
   <button class="cart-button clear-btn" (click) = "clearCart()">Clear Cart</button>
-  <a class="cart-button next-btn" [routerLink] = "['/', { outlets: {primary: ['checkout'], appRight: ['checkout'] } }]"><span style = "color: white; font-weight: 400;">Next</span></a>
+  <a class="cart-button next-btn" [routerLink] = "['/', { outlets: { primary: ['checkout'] ,appRight: null } }]"><span style = "color: white; font-weight: 400;">Next</span></a>
 </div>

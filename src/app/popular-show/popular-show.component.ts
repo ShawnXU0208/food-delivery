@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition, query, keyframes } from '@angular/animations';
 
 import { RestuarantsService } from '../services/restuarants.service';
-//import { RestuarantDetailService } from '../services/restuarant-detail.service';
-import { GlobalDataService } from '../services/global-data.service';
 
 @Component({
   selector: 'app-popular-show',
@@ -107,12 +105,12 @@ export class PopularShowComponent implements OnInit {
   constructor(
     private restaurantsService: RestuarantsService,
     //private restuarantDetailService: RestuarantDetailService,
-    private globalDataService: GlobalDataService
+    //private globalDataService: GlobalDataService
   ) {
   }
 
   ngOnInit() {
-    this.globalDataService.changeLayout(1);
+    //this.globalDataService.changeLayout(1);
     this.restaurantsService.getRestuarants()
       .subscribe((data: any[]) => {
         console.log(data);
