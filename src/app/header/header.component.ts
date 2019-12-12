@@ -49,7 +49,7 @@ export class HeaderComponent implements OnInit {
   userObj: any;
   active = false;
 
-  dashboardPage: boolean = false;
+  ownerRelativePage: boolean = false;
 
   public logoImgSrc: string = globalImgs.logoImg;
 
@@ -74,8 +74,8 @@ export class HeaderComponent implements OnInit {
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
         //console.log(event.url);
-        if(event.url.includes('dashboard')){
-          this.dashboardPage = true;
+        if(event.url.includes('dashboard') || event.url.includes('owner')){
+          this.ownerRelativePage = true;
         }
       });
   }

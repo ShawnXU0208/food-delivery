@@ -1,107 +1,12 @@
-<!--
-<nav class="navbar navbar-expand-md navbar-light">
-  <a class="navbar-brand" href = "#">
-    <img [src] = "logoImgSrc">
-  </a>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navBtns" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navBtns">
-    <ul class="navbar-nav ml-auto" *ngIf = "!logInfo.isLogged; else loggedHeader">
-      <li class="nav-item">
-        <a class="nav-link" [routerLink] = "[{ outlets: { primary: ['customer-register'],appRight: ['customer-register'] } }]">
-          <i class="fas fa-user"></i> Log in
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink = "/driver/register">
-          <i class="fas fa-car"></i> become a driver
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink = "/owner/register">
-          <i class="fas fa-handshake"></i> join us
-        </a>
-      </li>
-    </ul>
-
-    <ng-template #loggedHeader>
-      <ul class="navbar-nav ml-auto" *ngIf = "logInfo.userRole === 'customer'">
-        <li class="nav-item dropdown">
-          <a class="nav-link btn dropdown-toggle" role = "button" id = "customerMenu" data-toggle = "dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-user"></i> {{userObj.firstName}}
-          </a>
-
-          <div class = "dropdown-menu nav-dropdown dropdown-menu-right" aria-labelledby = "customerMenu">
-            <div class = "user-name">
-              {{userObj.firstName}} {{userObj.lastName}}
-            </div>
-
-            <div class = "user-info">
-              <div>{{userObj.email}}</div>
-              <div>{{userObj.phone}}</div>
-            </div>
-
-            <a class = "user-logout btn" (click) = "customerLogout()">logout</a>
-          </div>
-        </li>
-      </ul>
-
-      <ul class="navbar-nav ml-auto" *ngIf = "logInfo.userRole === 'driver'">
-        <li class="nav-item dropdown">
-          <a class="nav-link btn dropdown-toggle" role = "button" id = "customerMenu" data-toggle = "dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-car"></i> {{userObj.firstName}}
-          </a>
-
-          <div class = "dropdown-menu nav-dropdown dropdown-menu-right" aria-labelledby = "customerMenu">
-            <div class = "user-name">
-              {{userObj.firstName}} {{userObj.lastName}}
-            </div>
-
-            <div class = "user-info">
-              <div>{{userObj.email}}</div>
-              <div>{{userObj.phone}}</div>
-            </div>
-
-            <a class = "user-logout btn" (click) = "driverLogout()">logout</a>
-          </div>
-        </li>
-      </ul>
-
-      <ul class="navbar-nav ml-auto" *ngIf = "logInfo.userRole === 'owner'">
-        <li class="nav-item dropdown">
-          <a class="nav-link btn dropdown-toggle" role = "button" id = "customerMenu" data-toggle = "dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-handshake"></i>  {{userObj.firstName}}
-          </a>
-
-          <div class = "dropdown-menu nav-dropdown dropdown-menu-right" aria-labelledby = "customerMenu">
-            <div class = "user-name">
-              {{userObj.firstName}} {{userObj.lastName}}
-            </div>
-
-            <div class = "user-info">
-              <div>{{userObj.email}}</div>
-              <div>{{userObj.phone}}</div>
-            </div>
-
-            <a class = "user-logout btn" (click) = "ownerLogout()">logout</a>
-          </div>
-        </li>
-      </ul>
-    </ng-template>
-  </div>
-</nav>
--->
-<button class = "controller" (click) = "onOver()" [@flip] = "active? 'active' : 'inactive' " *ngIf = "!dashboardPage">
+<button class = "controller" (click) = "onOver()" [@flip] = "active? 'active' : 'inactive' " *ngIf = "!ownerRelativePage">
   <i class="fas fa-power-off" *ngIf = "!active; else closeIcon"></i>
   <ng-template #closeIcon>
     <i class="fas fa-times"></i>
   </ng-template>
 </button>
 
-<button class = "controller" (click) = "logout()" [@flip] = "active? 'active' : 'inactive' " *ngIf = "dashboardPage">
+<button class = "controller" (click) = "logout()" [@flip] = "active? 'active' : 'inactive' " *ngIf = "ownerRelativePage">
   <i class="fas fa-power-off"></i>
 </button>
 

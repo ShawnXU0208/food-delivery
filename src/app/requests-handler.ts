@@ -3,15 +3,6 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse } fr
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
-//import { Customer } from './model/customer';
-//import { Driver } from './model/driver';
-//import { Owner } from './model/owner';
-
- 
-
-//let customers = JSON.parse(localStorage.getItem("customers")) || [];
-//let drivers = JSON.parse(localStorage.getItem("drivers")) || [];
-//let owners = JSON.parse(localStorage.getItem("owners")) || [];
 
 let users = JSON.parse(localStorage.getItem("users")) || [];
 let restuarants = JSON.parse(localStorage.getItem("restuarants")) || [];

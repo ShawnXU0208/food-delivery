@@ -44,6 +44,11 @@
 
 .owner-container{
   padding: 5% 0%;
+  background-color: white;
+  height: 95vh;
+  position: relative;
+  top: 2.5vh;
+  border-radius: 10px;
 }
 
 .owner-form{

@@ -26,14 +26,14 @@ export class PageLayoutService {
             this.layoutMode = 1;
             break;
           case val.url.includes("owner"):
-            this.modeSubject.next({layoutMode: 3});
-            this.layoutMode = 3;
+            this.modeSubject.next({layoutMode: 4});
+            this.layoutMode = 4;
             break;
           case val.url.includes("restaurant-list"):
             this.modeSubject.next({layoutMode: 1});
             this.layoutMode = 1;
             break;
-          case val.url.includes("shopping-cart"):
+          case val.url.includes("restaurant-menu"):
             this.modeSubject.next({layoutMode: 2}); 
             this.layoutMode = 2;
             break;

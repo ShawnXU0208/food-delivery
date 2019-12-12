@@ -152,12 +152,12 @@
 
         <div class = "second-link small" *ngIf = "formMode.action === 'register' ">
           Already a restaurant owner?
-          <a [routerLink] = "['/', { outlets: {appRight: ['owner-login'] } }]">Get into your Dashboard</a>
+          <a [routerLink] = "['/', { outlets: {primary: ['owner-login'], appRight: null} }]">Get into your Dashboard</a>
         </div>
 
         <div class = "second-link small" *ngIf = "formMode.action === 'login'">
           Not a restaurant owner?
-          <a [routerLink] = "['/', { outlets: {appRight: ['owner-register'] } }]">Sign up</a>
+          <a [routerLink] = "['/', { outlets: {primary: ['owner-register'], appRight: null} }]">Sign up</a>
         </div>   
 
         <div style = "font-size: 19px; text-align: center; font-weight: 400; margin-bottom: 20px;" *ngIf = "formMode.action === 'register' && formMode.role === 'owner' ">

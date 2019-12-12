@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet, UrlSerializer } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
@@ -9,6 +9,7 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//import { DefaultUrlSerializer, UrlSerializer, UrlTree } from '@angular/router';
 
 
 import { AppComponent } from './app.component';
@@ -33,6 +34,7 @@ import { PopularShowComponent } from './popular-show/popular-show.component';
 import { RestaurantInfoComponent } from './restaurant-info/restaurant-info.component';
 import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
 import { OwnerPageComponent } from './owner-page/owner-page.component';
+import { StandardUrlSerializer } from './standard-url-serializer';
 
 
 @NgModule({
@@ -44,34 +46,6 @@ import { OwnerPageComponent } from './owner-page/owner-page.component';
     FormsModule,
     BrowserAnimationsModule,
     routingModule
-    //RouterModule.forRoot([
-      /*
-      {path: '', component: HomePageComponent},
-      //{path: 'register', component: CustomerRegisterComponent},
-      //{path: 'login', component: CustomerLoginComponent},
-      {path: 'customer/login', component: UserFormComponent},
-      {path: 'customer/register', component: UserFormComponent},
-      {path: 'driver/login', component: UserFormComponent},
-      {path: 'driver/register', component: UserFormComponent},
-      {path: 'owner/login', component: UserFormComponent},
-      {path: 'owner/register', component: UserFormComponent},
-      {path: 'restuarant/:id', component: RestuarantDetailComponent},
-      {path: 'checkout', component: CheckoutComponent},
-      {path: 'dashboard', component: RestaurantDashboardComponent}
-      */
-
-      /*
-      {path: '', component: HomePageComponent, outlet: "app-left"},
-      {path: 'customer/login', component: HomePageComponent, outlet: "app-left"},
-      {path: 'customer/login', component: UserFormComponent, outlet: "app-right"},
-      {path: 'customer/register', component: HomePageComponent, outlet: "app-left"},
-      {path: 'customer/register', component: UserFormComponent, outlet: "app-right"},
-      {path: 'driver/login', component: UserFormComponent, outlet: "app-right"},
-      {path: 'driver/register', component: UserFormComponent, outlet: "app-right"},
-      {path: 'owner/login', component: UserFormComponent, outlet: "app-right"},
-      {path: 'owner/register', component: UserFormComponent, outlet: "app-right"}
-      */
-    //])
   ],
 
   declarations: [
@@ -105,7 +79,12 @@ import { OwnerPageComponent } from './owner-page/owner-page.component';
       useClass: RequestsHandler,
       multi: true
     },
-    TimePipe
+    TimePipe,
+    {
+      provide: UrlSerializer,
+      useClass: StandardUrlSerializer
+    }
+
   ]
 })
 export class AppModule { }
