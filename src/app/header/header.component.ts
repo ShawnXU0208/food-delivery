@@ -5,10 +5,8 @@ import { filter } from 'rxjs/operators';
 
 
 import * as globalImgs from '../../assets/images/image.data';
-import { CustomerService } from '../services/customer.service';
-import { DriverService } from '../services/driver.service';
-import { OwnerService } from '../services/owner.service';
-import { CurrentUserService } from '../services/current-user.service';
+import { UserService } from '../services/user.service';
+import { ShoppingCartService } from '../services/shopping-cart.service';
 
 
 @Component({
@@ -47,7 +45,7 @@ import { CurrentUserService } from '../services/current-user.service';
 })
 export class HeaderComponent implements OnInit {
 
-  logInfo: any;
+  loggedUser: any;
   userObj: any;
   active = false;
 
@@ -57,19 +55,21 @@ export class HeaderComponent implements OnInit {
 
 
   constructor(
-    private customerService: CustomerService,
-    private driverService: DriverService,
-    private ownerService: OwnerService,
-    private currentUserService: CurrentUserService,
-    private router: Router
+    //private customerService: CustomerService,
+    //private driverService: DriverService,
+    //private ownerService: OwnerService,
+    //private currentUserService: CurrentUserService,
+    private usersService: UserService,
+    private router: Router,
+    private shoppingCartService: ShoppingCartService
   ){
-
-    this.logInfo = this.currentUserService.currentStatus();
+/*
+    this.loggedUser = this.usersService.getLoggedUser();
     //console.log(this.logInfo.isLogged);
-    if(this.logInfo.isLogged){
+    if(this.loggedUser){
       this.userObj = JSON.parse(this.logInfo.currentUser);
     }
-
+*/
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
@@ -89,18 +89,9 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(){
-    switch (this.logInfo.userRole) {
-      case "customer":
-        this.customerService.logout();
-        window.location.href = "";
-      case "driver":
-        this.driverService.logout();
-        window.location.href = "";
-      case "owner":
-        this.ownerService.logout();
-        window.location.href = "";  
-    }
-
+   this.usersService.userLogout();
+   this.shoppingCartService.clearShoppingCart();
+   window.location.href = "";
   }
 
 

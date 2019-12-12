@@ -3,7 +3,25 @@
   <div style = "font-size: 25px; font-weight: 500; margin-left: 4%;">Cart</div>
 
   <div style = "height: 40vh;">
-    <div id = "product-items" *ngIf = "cartItemInfo" [innerHTML] = "cartItemInfo.html | noSanitize"></div>
+    <div id = "product-items">
+
+      <div class = "cart-item container-fluid" *ngFor = "let cartItem of cartItems">
+        <div class = "row" style = "height: 100%;">
+          <div class = "col-3">
+            <img [src] = "'../../assets/images/' + cartItem.image">
+          </div>
+          <div class = "col-6 cart-item-text">
+            <div class = "name" style = "font-size: 15px; font-weight: 600;">{{cartItem.name}}</div>
+            <div class = "category" style = "font-size: 10px; font-weight: 300; color: grey;">{{cartItem.category}}</div>
+          </div>
+          <div class = "col-3 cart-item-text">
+            <div class = "item-price" style = "font-size: 12px; font-weight: 300; color: grey;">{{cartItem.price | currency}}</div>
+            <div class = "item-number" style = "font-size: 10px; font-weight: 300; color: grey;">x{{cartItem.quantity}}</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 
   <div class = "container delivery-fee mt-3">
@@ -15,16 +33,16 @@
         <div class = "name">Delivery Fee</div>
       </div>
       <div class = "col-3">
-        <div class = "item-price">$6.99</div>
+        <div class = "item-price">{{deliverFee | currency }}</div>
       </div>
     </div>
   </div>
 
   <div class = "conclusion">
     <div style = "font-size: 20px; line-height: 50px;">Total</div>
-    <div style = "font-size: 30px; font-weight: 500;" *ngIf = "cartItemInfo; else defaultPrice">{{cartItemInfo.total_price | currency}}</div>
+    <div style = "font-size: 30px; font-weight: 500;" *ngIf = "false; else defaultPrice"></div>
     <ng-template #defaultPrice>
-      <div style = "font-size: 30px; font-weight: 500;">$6.99</div>
+      <div style = "font-size: 30px; font-weight: 500;">{{totalPrice | currency}}</div>
     </ng-template>
   </div>
 

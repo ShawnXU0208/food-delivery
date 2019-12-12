@@ -7,7 +7,8 @@ import { Router } from "@angular/router";
 //import { restuarants } from '../../assets/restuarants_sample';
 import { RestuarantsService } from '../services/restuarants.service';
 import { GlobalDataService } from '../services/global-data.service';
-import { CurrentUserService } from '../services/current-user.service';
+import { UserService, Customer, Driver, Owner } from '../services/user.service';
+//import { CurrentUserService } from '../services/current-user.service';
 
 @Component({
   selector: 'app-home-page',
@@ -19,8 +20,7 @@ export class HomePageComponent implements OnInit {
   restuarants: any[] = [];
   baseImgUrl = "../../assets/images/";
   buttonClicked;
-  logInfo: any;
-  userObj: any;
+  loggedUser: any = false;
 
   layoutExpand: boolean;
 
@@ -29,7 +29,8 @@ export class HomePageComponent implements OnInit {
   constructor(
     private restuarantsService: RestuarantsService,
     private globalDataService: GlobalDataService,
-    private currentUserService: CurrentUserService,
+    //private currentUserService: CurrentUserService,
+    private userService: UserService,
     private formBuilder: FormBuilder,
     private router: Router
   ){
@@ -40,11 +41,10 @@ export class HomePageComponent implements OnInit {
       this.layoutExpand = false;
     }
     //fetch logged user information
-    this.logInfo = this.currentUserService.currentStatus();
-    //console.log(this.logInfo.isLogged);
-    if(this.logInfo.isLogged){
-      this.userObj = JSON.parse(this.logInfo.currentUser);
-    }
+    this.loggedUser = this.userService.getLoggedUser();
+    console.log(this.loggedUser);
+    //console.log(this.loggedUser.getFirstName());
+
   }
 
   ngOnInit() {
@@ -52,8 +52,8 @@ export class HomePageComponent implements OnInit {
 
     this.restuarantsService.getRestuarants()
       .subscribe((data: any[]) => {
-        console.log(data);
         this.restuarants = data;
+        //console.log(this.restuarants);
       });
 
     this.searchBar = this.formBuilder.group({

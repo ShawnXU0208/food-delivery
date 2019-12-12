@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition, query, keyframes } from '@angular/animations';
 
 import { RestuarantsService } from '../services/restuarants.service';
-import { RestuarantDetailService } from '../services/restuarant-detail.service';
+//import { RestuarantDetailService } from '../services/restuarant-detail.service';
 import { GlobalDataService } from '../services/global-data.service';
 
 @Component({
@@ -106,7 +106,7 @@ export class PopularShowComponent implements OnInit {
 
   constructor(
     private restaurantsService: RestuarantsService,
-    private restuarantDetailService: RestuarantDetailService,
+    //private restuarantDetailService: RestuarantDetailService,
     private globalDataService: GlobalDataService
   ) {
   }
@@ -129,7 +129,7 @@ export class PopularShowComponent implements OnInit {
         this.slidesState[this.previousSlideIndex] = 'previous';
       });
 
-    this.restuarantDetailService.getMenu()
+    this.restaurantsService.getMenuItems()
       .subscribe((data: any[]) => {
         console.log(data);
         for(let menu of data){
@@ -164,7 +164,7 @@ export class PopularShowComponent implements OnInit {
     }
     this.slidesState[this.previousSlideIndex] = 'previous';
 
-    console.log(this.slidesState);
+    //console.log(this.slidesState);
   }
 
   showNext(){
@@ -185,7 +185,7 @@ export class PopularShowComponent implements OnInit {
     }
     this.slidesState[this.nextSlideIndex] = 'next';
 
-    console.log(this.slidesState);
+    //console.log(this.slidesState);
   }
 
 }

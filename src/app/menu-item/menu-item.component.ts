@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { ShoppingCartService } from '../services/shopping-cart.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-menu-item',
@@ -10,9 +12,15 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
 export class MenuItemComponent implements OnInit {
 
   @Input() menuItem: any;
+  @Input() customerLogged: boolean;
   numberToAdd: number = 0;
 
-  constructor(private shoppingCartService: ShoppingCartService) { }
+  constructor(
+    private shoppingCartService: ShoppingCartService,
+    private userService: UserService,
+    private router: Router
+  ) {
+  }
 
   ngOnInit() {
   }
@@ -28,20 +36,20 @@ export class MenuItemComponent implements OnInit {
   }
 
   addToCart(){
-    this.shoppingCartService.addItem(
-      this.menuItem.id,
-      this.menuItem.name,
-      this.menuItem.category,
-      this.menuItem.price,
-      this.menuItem.image,
-      this.numberToAdd
-    );
-
-    this.numberToAdd = 0;
+    if(!this.customerLogged){
+      this.router.navigateByUrl("/(appRight:customer-login)");
+    }else{
+      this.shoppingCartService.addToCart(this.menuItem.id, this.numberToAdd);
+      this.numberToAdd = 0;
+    }
   }
 
   removeFromCart(){
-    this.shoppingCartService.deleteItem(this.menuItem.id);
+    if(!this.customerLogged){
+      this.router.navigateByUrl("/(appRight:customer-login)");
+    }else{
+      this.shoppingCartService.remoeFromCart(this.menuItem.id);
+    }
   }
 
 }

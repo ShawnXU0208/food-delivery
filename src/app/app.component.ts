@@ -5,7 +5,10 @@ import { Router, NavigationEnd } from "@angular/router";
 import { filter } from 'rxjs/operators';
 
 import { GlobalDataService } from './services/global-data.service';
-import { pageSlideIn } from './animations'
+import { pageSlideIn } from './animations';
+import { PageLayoutService } from './services/page-layout.service';
+
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +18,7 @@ import { pageSlideIn } from './animations'
 })
 export class AppComponent implements OnInit, OnDestroy, AfterViewChecked{
   subscription: Subscription;
+  urlSubscription: Subscription;
   title = "food-delivery";
   //expand: boolean = false;
   layoutMode: number;
@@ -22,7 +26,9 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewChecked{
   constructor(
     private globlaDataService: GlobalDataService,
     private ref: ChangeDetectorRef,
-    private router: Router
+    private router: Router,
+    private users: UserService,
+    private pageLayoutService: PageLayoutService
   ){
     /*
     this.router.events
@@ -48,11 +54,13 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewChecked{
     this.subscription = this.globlaDataService.getLayout().subscribe(
       data =>{
         this.layoutMode = data.mode;
-        console.log(this.layoutMode);
+        //console.log(this.layoutMode);
       }
     );
 
-
+    this.urlSubscription = this.pageLayoutService.getCurrentUrl().subscribe(data => {
+      console.log(data.currentUrl);
+    });
   }
 
   ngAfterViewChecked(){

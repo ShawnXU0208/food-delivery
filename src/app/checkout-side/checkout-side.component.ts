@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ShoppingCartService } from '../services/shopping-cart.service';
+//import { RestuarantsService } from '../services/restuarants.service';
 
 @Component({
   selector: 'app-checkout-side',
@@ -9,11 +10,15 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
 })
 export class CheckoutSideComponent implements OnInit {
 
-  total;
+  total = 0;
 
-  constructor(private shoppingCartService: ShoppingCartService) { }
+  constructor(
+    private shoppingCartService: ShoppingCartService,
+    //private restuarantService: RestuarantsService
+  ) { }
 
   ngOnInit() {
+    //this.total = this.shoppingCartService.getTotalPrice();
     this.total = this.shoppingCartService.getTotalPrice();
   }
 

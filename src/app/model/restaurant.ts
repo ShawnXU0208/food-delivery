@@ -1,3 +1,5 @@
+/*
+
 export class Restaurant {
   private restaurantName: string;
   private restaurantAddress: string;
@@ -30,3 +32,4 @@ export class Restaurant {
     this.restaurantId = number + 1;
   }
 }
+*/

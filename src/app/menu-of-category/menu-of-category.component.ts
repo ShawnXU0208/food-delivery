@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 
-import { RestuarantDetailService } from '../services/restuarant-detail.service';
+import { RestuarantsService } from '../services/restuarants.service';
 
 @Component({
   selector: 'app-menu-of-category',
@@ -10,10 +10,12 @@ import { RestuarantDetailService } from '../services/restuarant-detail.service';
 export class MenuOfCategoryComponent implements OnInit {
 
   @Input() categoryName: string;
+  @Input() restuarantId: number;
+  @Input() customerLogged: boolean;
 
   menuItems: any[] = [];
 
-  constructor(private restuarantDetailService: RestuarantDetailService){
+  constructor(private restuarantService: RestuarantsService){
   }
 
   ngOnInit() {
@@ -28,8 +30,7 @@ export class MenuOfCategoryComponent implements OnInit {
   getMenu(){
     //clear menu list
     this.menuItems = [];
-
-    this.restuarantDetailService.getMenu()
+    this.restuarantService.getRestuarantMenu(this.restuarantId)
       .subscribe((data: any[]) => {
         console.log(data);
         for(let menu of data){

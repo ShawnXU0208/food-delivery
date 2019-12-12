@@ -3,21 +3,25 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse } fr
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
-import { Customer } from './model/customer';
-import { Driver } from './model/driver';
-import { Owner } from './model/owner';
+//import { Customer } from './model/customer';
+//import { Driver } from './model/driver';
+//import { Owner } from './model/owner';
 
  
 
-let customers = JSON.parse(localStorage.getItem("customers")) || [];
-let drivers = JSON.parse(localStorage.getItem("drivers")) || [];
-let owners = JSON.parse(localStorage.getItem("owners")) || [];
+//let customers = JSON.parse(localStorage.getItem("customers")) || [];
+//let drivers = JSON.parse(localStorage.getItem("drivers")) || [];
+//let owners = JSON.parse(localStorage.getItem("owners")) || [];
+
+let users = JSON.parse(localStorage.getItem("users")) || [];
+let restuarants = JSON.parse(localStorage.getItem("restuarants")) || [];
+let menus = JSON.parse(localStorage.getItem("menu")) || [];
 
 @Injectable()
 export class RequestsHandler implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
-    const { url, method, headers, body } = request;
+    const { url, method, headers, body, params } = request;
     //const {email, password} = body;
 
     return of(null)  
@@ -28,23 +32,40 @@ export class RequestsHandler implements HttpInterceptor {
 
     function handleRoute(){
       switch (true) {
-        case url.endsWith("/customers/login") && method === "POST":
-          return loginAuthenticate('customer');
 
-        case url.endsWith("/customers/register") && method === "POST":
-          return register('customer');
+        case url.endsWith("/api/users") && method === "GET":
+          return usersList();
 
-        case url.endsWith("/driver/login") && method === "POST":
-          return loginAuthenticate('driver');
+        case url.endsWith("/api/user/login") && method === "POST":
+          return loginAuthenticate();
 
-        case url.endsWith("/driver/register") && method === "POST":
-          return register('driver');
+        case url.endsWith("/api/user/register") && method === "POST":
+          return register();
 
-        case url.endsWith("/owner/login") && method === "POST":
-          return loginAuthenticate('owner');
+        case url.endsWith("/api/restuarants") && method === "GET":
+          if(params.get('id')){
+            //console.log(params.get('id'));
+            return restuarantById(+params.get('id'));
+          }else{
+            return restuarantsList();
+          }
 
-        case url.endsWith("/owner/register") && method === "POST":
-          return register('owner');
+        case url.endsWith("/api/restuarants/add") && method === "POST":
+          return addRestuarant();
+
+        case url.endsWith("/api/menus") && method === "GET":
+          if(params.get('rid')){
+            return menuOfRestuarant(+params.get('rid'));
+          }else if(params.get('mid')){
+            //return menuList();
+            return menuById(+params.get('mid'));
+          }else{
+            return menuList();
+          }
+
+        case url.endsWith("/api/menus/add") && method === "POST":
+          return addMenuItem();
+
 
         default:
             // pass through any requests not handled above
@@ -52,25 +73,56 @@ export class RequestsHandler implements HttpInterceptor {
       }
     }
 
-    function loginAuthenticate(role: string){
+    function usersList(){
+      return ok(users);
+    }
+
+    function restuarantsList(){
+      return ok(restuarants);
+    }
+
+    function restuarantById(id: number){
+      let restuarantFound = restuarants.find(restuarant => restuarant.id == id);
+      return ok(restuarantFound);
+    }
+
+    function addRestuarant(){
+      const newRestuarant = body.newRestuarant;
+      restuarants.push(newRestuarant);
+      localStorage.setItem("restuarants", JSON.stringify(restuarants));
+      return ok(newRestuarant);
+    }
+
+    function menuList(){
+      return ok(menus);
+    }
+
+    function addMenuItem(){
+      const newMenuItem = body.newMenuItem;
+      menus.push(newMenuItem);
+      localStorage.setItem("menu", JSON.stringify(menus));
+      console.log(newMenuItem);
+      return ok(newMenuItem);
+    }
+
+    function menuOfRestuarant(id: number){
+      //let memuList = [];
+      let menuFound = menus.filter(menu => menu.restuarantId == id);
+      return ok(menuFound);
+    }
+
+    function menuById(id: number){
+      let menuFound = menus.find(menu => menu.id == id);
+      return ok(menuFound);
+    }
+
+    function loginAuthenticate(){
 
       const emailInput = body.email;
       const passwordInput = body.password;
+      const userRole = body.userRole;
 
-      let userFound;
-
-      switch (role) {
-        case "customer":
-          userFound = customers.find(registered => registered.email === emailInput);
-          break;
-        case "driver":
-          userFound = drivers.find(registered => registered.email === emailInput);
-          break;
-        case "owner":
-          userFound = owners.find(registered => registered.email === emailInput);
-          break;
-        
-      }
+      let userFound = users.find(user => user.email === emailInput);
 
 
       if(!userFound){
@@ -80,67 +132,66 @@ export class RequestsHandler implements HttpInterceptor {
       if(userFound.password !== passwordInput){
         return error("password is incorrect!");
       }
-  
-      return ok({
-        firstName: userFound.firstName,
-        lastName: userFound.lastName,
-        email: userFound.email,
-        phone: userFound.phone
-      });
+
+      switch (userRole){
+        case 'customer':
+          return ok({
+            id: userFound.id,
+            firstName: userFound.firstName,
+            lastName: userFound.lastName,
+            email: userFound.email,
+            phone: userFound.phone,
+            userRole: userFound.userRole
+          });  
+
+          break;    
+
+        case 'driver':
+          return ok({
+            id: userFound.id,
+            firstName: userFound.firstName,
+            lastName: userFound.lastName,
+            email: userFound.email,
+            phone: userFound.phone,
+            userRole: userFound.userRole,
+            carPlate: userFound.carPlate,
+            license: userFound.license
+          }); 
+
+          break;  
+
+        case 'owner':
+          return ok({
+            id: userFound.id,
+            firstName: userFound.firstName,
+            lastName: userFound.lastName,
+            email: userFound.email,
+            phone: userFound.phone,
+            userRole: userFound.userRole,
+            company: userFound.company
+          });    
+
+          break;      
+      }
+ 
     }
 
-    function register(role: string){
-      const newUser = body;
+    function register(){
+      const newUser = body.user;
+      const userRole = body.userRole;
 
-      switch (role) {
-
-        case "customer":
-          if(customers.find(registered => registered.email === newUser.getEmail())){
-            return error('email address is already taken');
-          }
-
-          if(customers.find(registered => registered.phone === newUser.getPhone())){
-            return error('phone number is already taken');
-          }
-
-          customers.push(newUser);
-          localStorage.setItem('customers', JSON.stringify(customers));
-          break;
-        
-        case "driver":
-          if(drivers.find(registered => registered.email === newUser.getEmail())){
-            return error('email address is already taken');
-          }
-
-          if(drivers.find(registered => registered.phone === newUser.getPhone())){
-            return error('phone number is already taken');
-          }
-
-          drivers.push(newUser);
-          localStorage.setItem('drivers', JSON.stringify(drivers));
-          break;
-
-        case "owner":
-          if(owners.find(registered => registered.email === newUser.getEmail())){
-            return error('email address is already taken');
-          }
-
-          if(owners.find(registered => registered.phone === newUser.getPhone())){
-            return error('phone number is already taken');
-          }
-
-          owners.push(newUser);
-          localStorage.setItem('owners', JSON.stringify(owners));
-          break;
+      if(users.find(user => user.email === newUser.getEmail() && user.userRole === userRole)){
+        return error('email address is already taken');
       }
 
+      if(users.find(user => user.phone === newUser.getPhone() && user.userRole === userRole)){
+        return error('phone number is already taken');
+      }
 
-      return ok({
-        firstName: newUser.firstName,
-        lastName: newUser.lastName,
-        email: newUser.email,
-        phone: newUser.phone
-      });
+      users.push(newUser);
+      localStorage.setItem('users', JSON.stringify(users));
+
+      return ok(newUser);
 
 
     }

@@ -3,12 +3,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { Router } from "@angular/router";
 
-import { Customer } from '../model/customer'; 
-import { Driver } from '../model/driver'; 
-import { Owner } from '../model/owner'; 
-import { CustomerService } from '../services/customer.service';
-import { DriverService } from '../services/driver.service';
-import { OwnerService } from '../services/owner.service';
+import { UserService, Customer, Driver, Owner } from '../services/user.service';
 import { FormAlertsService } from '../services/form-alerts.service';
 import { GlobalDataService } from '../services/global-data.service';
 
@@ -35,9 +30,10 @@ export class UserFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private customerService: CustomerService,
-    private driverService: DriverService,
-    private ownerService: OwnerService,
+    //private customerService: CustomerService,
+    //private driverService: DriverService,
+    //private ownerService: OwnerService,
+    private usersService: UserService,
     private router: Router,
     private formAlertService: FormAlertsService,
     private globalDataService: GlobalDataService
@@ -150,7 +146,7 @@ export class UserFormComponent implements OnInit {
 
       case this.router.url.includes("customer-login"):
         // when a customer to log in
-        this.customerService.login(userData['email'], userData['password'])
+        this.usersService.userLogin(userData['email'], userData['password'], 'customer')
           .pipe(first())
           .subscribe(
             data =>{
@@ -176,7 +172,7 @@ export class UserFormComponent implements OnInit {
           userData['password']
         );
 
-        this.customerService.register(newCustomer)
+        this.usersService.register(newCustomer, 'customer')
           .pipe(first())
           .subscribe(
             data => {
@@ -197,7 +193,7 @@ export class UserFormComponent implements OnInit {
 
       case this.router.url.includes("driver-login"):
         // when a driver to log in
-        this.driverService.login(userData['email'], userData['password'])
+        this.usersService.userLogin(userData['email'], userData['password'], 'driver')
           .pipe(first())
           .subscribe(
             data =>{
@@ -220,12 +216,12 @@ export class UserFormComponent implements OnInit {
           userData['lastName'],
           userData['phone'],
           userData['email'],
+          userData['password'],
           userData['carPlate'],
-          userData['license'],
-          userData['password']
+          userData['license']
         );
 
-        this.driverService.register(newDriver)
+        this.usersService.register(newDriver, 'driver')
           .pipe(first())
           .subscribe(
             data => {
@@ -244,7 +240,7 @@ export class UserFormComponent implements OnInit {
 
       case this.router.url.includes("owner-login"):
         // when a owner to log in
-        this.ownerService.login(userData['email'], userData['password'])
+        this.usersService.userLogin(userData['email'], userData['password'], 'owner')
           .pipe(first())
           .subscribe(
             data =>{
@@ -268,11 +264,11 @@ export class UserFormComponent implements OnInit {
           userData['lastName'],
           userData['phone'],
           userData['email'],
-          userData['company'],
-          userData['password']
+          userData['password'],
+          userData['company']
         );
 
-        this.ownerService.register(newOwner)
+        this.usersService.register(newOwner, 'owner')
           .pipe(first())
           .subscribe(
             data => {

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { RestuarantDetailService } from '../services/restuarant-detail.service';
+import { RestuarantsService } from '../services/restuarants.service';
 import { GlobalDataService } from '../services/global-data.service';
 
 
@@ -34,7 +34,7 @@ export class OwnerPageComponent implements OnInit {
   selectedMenu: string = 'home';
 
   constructor(
-    private restaurantDetailService: RestuarantDetailService,
+    private restuarantService: RestuarantsService,
     private route: ActivatedRoute,
     private router: Router,
     private globalDataService: GlobalDataService
@@ -55,7 +55,7 @@ export class OwnerPageComponent implements OnInit {
   ngOnInit() {
     //this.selected = +this.route.snapshot.paramMap.get('id');
     for(let i = 0; i < this.restaurantsOwned.length; i++){
-      this.restaurantDetailService.getRestuarantInfo(this.restaurantsOwned[i])
+      this.restuarantService.getRestuarantById(this.restaurantsOwned[i])
         .subscribe((data: any[]) => {
           this.restaruantsInfo.push(data);
         })

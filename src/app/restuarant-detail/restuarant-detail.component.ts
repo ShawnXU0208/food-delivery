@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { trigger, state, style, animate, transition, query } from '@angular/animations';
 
-import { RestuarantDetailService } from '../services/restuarant-detail.service';
+//import { RestuarantDetailService } from '../services/restuarant-detail.service';
+import { RestuarantsService } from '../services/restuarants.service';
 import { GlobalDataService } from '../services/global-data.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-restuarant-detail',
@@ -33,29 +35,39 @@ export class RestuarantDetailComponent implements OnInit {
   restuarantInfo: any = "";
   menuCategories;
   selectedCategory: string;
+  customerLogged: boolean;
 
   constructor(
     private route: ActivatedRoute,
-    private restuarantDetailService: RestuarantDetailService,
-    private globalDataService: GlobalDataService
+    private restuarantService: RestuarantsService,
+    private globalDataService: GlobalDataService,
+    private userService: UserService
   ){
     this.id = +this.route.snapshot.paramMap.get('id');
     this.menuCategories = new Set();
+
+    let loggedUser = this.userService.getLoggedUser();
+    if(loggedUser && loggedUser['userRole'] == "customer"){
+      this.customerLogged = true;
+    }else{
+      this.customerLogged = false;
+    }
     //this.globalDataService.changeExpandPrimary(true);
   }
 
   ngOnInit() {
     this.globalDataService.changeLayout(2);
 
-    this.restuarantDetailService.getRestuarantInfo(this.id)
+    this.restuarantService.getRestuarantById(this.id)
       .subscribe((data: any[]) => {
         this.restuarantInfo = data;
       });
 
-    this.restuarantDetailService.getMenu()
+    this.restuarantService.getRestuarantMenu(this.id)
       .subscribe((data: any[]) => {
-        console.log(data);
-        this.selectedCategory = data[0]['category'];
+        if(data.length > 0){
+          this.selectedCategory = data[0]['category'];
+        }
         for(let menu of data){
           this.menuCategories.add(menu['category']);
         }

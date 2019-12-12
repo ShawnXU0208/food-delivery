@@ -5,8 +5,8 @@ import { AbstractControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { RestuarantDetailService } from '../services/restuarant-detail.service';
-import {TimePipe} from '../time.pipe';
+import { RestuarantsService } from '../services/restuarants.service';
+import { TimePipe } from '../time.pipe';
 import { GlobalDataService } from '../services/global-data.service';
 
 @Component({
@@ -39,7 +39,7 @@ export class RestaurantDashboardComponent implements OnInit {
     private renderer: Renderer2,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private restaurantDetailService: RestuarantDetailService,
+    private restuarantService: RestuarantsService,
     private timePipe: TimePipe,
     private globalDataService: GlobalDataService
   ) {
@@ -68,7 +68,7 @@ export class RestaurantDashboardComponent implements OnInit {
       this.selectedTypes = [];
       this.id = params.id;
       if(this.id > 0){
-        this.restaurantDetailService.getRestuarantInfo(this.id)
+        this.restuarantService.getRestuarantById(this.id)
           .subscribe((data: any[]) => {
             this.restaurantInfo = data;
             this.previewURL = "../../assets/images/" + this.restaurantInfo.image;

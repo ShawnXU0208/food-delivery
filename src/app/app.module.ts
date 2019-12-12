@@ -13,12 +13,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { CustomerService } from './services/customer.service';
+import { UserService } from './services/user.service';
 import { FormSideComponent } from './form/form-side/form-side.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { RestuarantItemComponent } from './restuarant-item/restuarant-item.component';
 import { RestuarantDetailComponent } from './restuarant-detail/restuarant-detail.component';
-import { DataService } from './services/data.service';
 import { MenuOfCategoryComponent } from './menu-of-category/menu-of-category.component';
 import { MenuItemComponent } from './menu-item/menu-item.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
@@ -45,7 +44,6 @@ import { OwnerPageComponent } from './owner-page/owner-page.component';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    InMemoryWebApiModule.forRoot(DataService),
     routingModule
     //RouterModule.forRoot([
       /*
@@ -103,7 +101,7 @@ import { OwnerPageComponent } from './owner-page/owner-page.component';
   bootstrap:    [ AppComponent ],
 
   providers: [
-    CustomerService,
+    UserService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RequestsHandler,

@@ -13,7 +13,7 @@
   </form>
 
 
-  <div *ngIf = "!logInfo.isLogged; else loggedPage">
+  <div *ngIf = "!loggedUser; else loggedPage">
     <!--
     <div id = "users-group">
       <div class = "user-btns" style = "margin-top: 25%;">
@@ -59,7 +59,7 @@
   <ng-template #loggedPage>
     <div style = "margin-top: 150px;">
       <p class = "greeting">Welcome:</p>
-      <p class = "name">{{userObj.firstName}} {{userObj.lastName}}</p>
+      <p class = "name">{{loggedUser.firstName}} {{loggedUser.lastName}}</p>
     </div>
   </ng-template>
 </div>

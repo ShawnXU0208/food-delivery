@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { RestuarantDetailService } from '../services/restuarant-detail.service';
+import { RestuarantsService, Restuarant } from '../services/restuarants.service';
 
 @Component({
   selector: 'app-restaurant-info',
@@ -11,27 +11,28 @@ import { RestuarantDetailService } from '../services/restuarant-detail.service';
 export class RestaurantInfoComponent implements OnInit {
 
   id: number;
-  restaurantInfo: any = '';
+  restuarant: any = '';
   rates = [false, false, false, false, false];
 
   constructor(
     private route: ActivatedRoute,
-    private restuarantDetailService: RestuarantDetailService
+    private restuarantService: RestuarantsService
   ) {
     this.id = +this.route.snapshot.paramMap.get('id');
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-        this.id = params.id;
-        this.restuarantDetailService.getRestuarantInfo(this.id)
-          .subscribe((data: any[]) => {
-            //console.log(data);
-            this.restaurantInfo = data;
+        this.id = +params.id;
+
+        this.restuarantService.getRestuarantById(this.id)
+          .subscribe((data: any) => {
+            this.restuarant = data;
+            console.log(this.restuarant);
 
             //assign rate stars
             for(let i = 0; i < 5; i++){
-              if(i < this.restaurantInfo.rate){
+              if(i < this.restuarant.rate){
                 this.rates[i] = true;
               }else{
                 this.rates[i] = false;

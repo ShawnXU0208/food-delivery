@@ -1,6 +1,6 @@
 <div class = "checkout-side">
   <hr>
-  <div class = "small" style ="color: grey; font-weight: 400;">CART TOTAL <span class = "total-price">{{total}}</span></div>
+  <div class = "small" style ="color: grey; font-weight: 400;">CART TOTAL <span class = "total-price">{{total | currency}}</span></div>
 
   <a class = "checkout-btn confirm align-middle" routerLink = "" (click) = "reset()">CHECKOUT</a>
   <a class = "checkout-btn cancel align-middle" [routerLink] = "['/', { outlets: {primary: ['restaurant-menu', 1],appRight: ['shopping-cart'] } }]">CANCEL</a>
