@@ -6,10 +6,10 @@ const restuarantsSample = [
   { 
     name: 'Dragon Garden Chinese Restaurant',
     tags: ['Chinese', 'Asian', 'Kiwi'], 
-    deliverFee: 6.99,
+    deliverFee: 9.99,
     deliverTime: "15-20min",
-    open: 9,
-    close: 18,
+    open: [9,10,9,9,11,12,9],
+    close: [18,18,19,20,17,18,19],
     address: "204 Hills Rd, Edgeware, Christchurch, Canterbury 8013",
     phone: "021 033 055",
     description: "consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?",
@@ -21,10 +21,10 @@ const restuarantsSample = [
   {
     name: 'Subway (Bush Inn)',
     tags: ['American', 'Kiwi', 'Europe'],
-    deliverFee: 6.99,
+    deliverFee: 2.99,
     deliverTime: "10-15min",
-    open: 10,
-    close: 15,
+    open: [9,10,9,10,12,11,10],
+    close: [18,19,20,20,18,19,20],
     address: "1 Papanui Rd, Carlton,",
     phone: "024 043 025",
     description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem q",
@@ -36,10 +36,10 @@ const restuarantsSample = [
   {
     name: 'Dubba Dubba',
     tags: ['Chinese', 'Turkey', 'Europe'],
-    deliverFee: 6.99,
+    deliverFee: 4.99,
     deliverTime: "15-20min",
-    open: 8,
-    close: 18,
+    open: [10,9,8,7,7,8,9],
+    close: [18,21,20,22,17,18,20],
     address: "326 Colombo St,",
     phone: "022 022 055",
     description: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique s",
@@ -53,8 +53,8 @@ const restuarantsSample = [
     tags: ['Turkey', 'Europe'],
     deliverFee: 6.99,
     deliverTime: "15-24min",
-    open: 9,
-    close: 19,
+    open: [9,8,9,10,11,8,10],
+    close: [11,10,20,21,21,22,20],
     address: "Hoyts Entx, 617-649 Colombo Street, Central Christchurch",
     phone: "021 013 015",
     description: "Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. ",
@@ -66,10 +66,10 @@ const restuarantsSample = [
   {
     name: 'Velvet Burger (Riccarton)',
     tags: ['Kiwi', 'Europe'],
-    deliverFee: 6.99,
+    deliverFee: 7.99,
     deliverTime: "18-24min",
-    open: 12,
-    close: 20,
+    open: [8,8,9,10,10,12,8],
+    close: [18,18,21,20,17,21,19],
     address: "96 Oxford Terrace, Christchurch Central City",
     phone: "021 033 055",
     description: "Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ",
@@ -83,8 +83,8 @@ const restuarantsSample = [
     tags: ['Asian', 'Japanese'],
     deliverFee: 6.99,
     deliverTime: "15-20min",
-    open: 9,
-    close: 20,
+    open: [7,7,9,9,9,10,10],
+    close: [19,18,18,18,18,18,19],
     address: "10 Welles St, Christchurch Central",
     phone: "027 035 055",
     description: "ut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisc",
@@ -926,8 +926,8 @@ export class Restuarant{
   private tags: string[];
   private deliverFee: number;
   private deliverTime: string;
-  private open: number;
-  private close: number;
+  private open: number[];
+  private close: number[];
   private address: string;
   private phone: string;
   private description: string;
@@ -935,20 +935,28 @@ export class Restuarant{
   private rate: number;
   private email: string;
 
-  constructor(name: string, tags: string[], deliverFee: number, deliverTime: string, open: number, close: number, address: string, phone: string, description: string, image: string, rate: number, email: string){
+  constructor(name: string, tags: string[], deliverFee: number, deliverTime: string, open: number[], close: number[], address: string, phone: string, description: string, image: string, rate: number, email: string){
     this.id = 0;
     this.name = name;
     this.tags = tags;
     this.deliverFee = deliverFee;
     this.deliverTime = deliverTime;
-    this.open = open;
-    this.close = close;
+    this.open = [];
+    this.close = [];
     this.address = address;
     this.phone = phone;
     this.description = description;
     this.image = image;
     this.rate = rate;
     this.email = email; 
+
+    for(const time of open){
+      this.open.push(time);
+    }
+
+    for(const time of close){
+      this.close.push(time);
+    }
   }
 
   public getId(){

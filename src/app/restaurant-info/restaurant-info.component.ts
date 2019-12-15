@@ -11,14 +11,28 @@ import { RestuarantsService, Restuarant } from '../services/restuarants.service'
 export class RestaurantInfoComponent implements OnInit {
 
   id: number;
-  restuarant: any = '';
+  restuarant: any = {
+    name: '',
+    open: [0,0,0,0,0,0,0],
+    close: [0,0,0,0,0,0,0],
+    description: '',
+    tags: [],
+    address: '',
+    email: '',
+    phone: '',
+    deliveryTime: ''
+  };
   rates = [false, false, false, false, false];
+  day: number;
 
   constructor(
     private route: ActivatedRoute,
     private restuarantService: RestuarantsService
   ) {
     this.id = +this.route.snapshot.paramMap.get('id');
+
+    const date = new Date();
+    this.day = date.getDay();
   }
 
   ngOnInit() {
@@ -27,6 +41,7 @@ export class RestaurantInfoComponent implements OnInit {
 
         this.restuarantService.getRestuarantById(this.id)
           .subscribe((data: any) => {
+            console.log(data);
             this.restuarant = data;
             console.log(this.restuarant);
 

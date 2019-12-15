@@ -4,13 +4,11 @@ import { ModuleWithProviders } from "@angular/core";
 import { UserFormComponent } from './user-form/user-form.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { CheckoutComponent } from './checkout/checkout.component';
-import { RestaurantDashboardComponent } from './restaurant-dashboard/restaurant-dashboard.component';
 import { PopularShowComponent } from './popular-show/popular-show.component';
 import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
 import { RestaurantInfoComponent } from './restaurant-info/restaurant-info.component';
 import { RestuarantDetailComponent } from './restuarant-detail/restuarant-detail.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-import { OwnerPageComponent } from './owner-page/owner-page.component';
 
 
 const routes: Routes = [
@@ -21,15 +19,13 @@ const routes: Routes = [
   {path: 'checkout', component: CheckoutComponent},
   {path: 'owner-register', component: UserFormComponent},
   {path: 'owner-login', component: UserFormComponent},
-  {path: 'dashboard', component: OwnerPageComponent},
   {path: '', component: PopularShowComponent, outlet: 'appRight'},
   {path: 'customer-register', component: UserFormComponent, outlet: 'appRight'},
   {path: 'driver-register', component: UserFormComponent, outlet: 'appRight'},
   {path: 'customer-login', component: UserFormComponent, outlet: 'appRight'},
   {path: 'driver-login', component: UserFormComponent, outlet: 'appRight'},
   {path: 'restaurant-info/:id', component: RestaurantInfoComponent, outlet: 'appRight'},
-  {path: 'shopping-cart', component: ShoppingCartComponent, outlet: 'appRight'},
-  {path: 'dashboard/:id', component: RestaurantDashboardComponent, outlet: 'appRight'},
+  {path: 'shopping-cart', component: ShoppingCartComponent, outlet: 'appRight'}
 /*
   {path: '', component: HomePageComponent},
   {path: '', component: PopularShowComponent, outlet: 'appRight'},

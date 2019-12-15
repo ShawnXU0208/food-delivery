@@ -1,13 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, RouterOutlet, UrlSerializer } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';  
-import { FormsModule } from '@angular/forms';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //import { DefaultUrlSerializer, UrlSerializer, UrlTree } from '@angular/router';
 
@@ -26,14 +22,12 @@ import { NoSanitizePipe } from './no-sanitize.pipe';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { RequestsHandler } from './requests-handler';
 import { FormAlertsComponent } from './form/form-alerts/form-alerts.component';
-import { RestaurantDashboardComponent } from './restaurant-dashboard/restaurant-dashboard.component';
 import { TimePipe } from './time.pipe';
 import { UserFormComponent } from './user-form/user-form.component';
 import { routingModule } from "./routing.module";
 import { PopularShowComponent } from './popular-show/popular-show.component';
 import { RestaurantInfoComponent } from './restaurant-info/restaurant-info.component';
 import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
-import { OwnerPageComponent } from './owner-page/owner-page.component';
 import { StandardUrlSerializer } from './standard-url-serializer';
 
 
@@ -61,13 +55,11 @@ import { StandardUrlSerializer } from './standard-url-serializer';
     NoSanitizePipe,
     CheckoutComponent,
     FormAlertsComponent,
-    RestaurantDashboardComponent,
     TimePipe,
     UserFormComponent,
     PopularShowComponent,
     RestaurantInfoComponent,
-    RestaurantListComponent,
-    OwnerPageComponent
+    RestaurantListComponent
   ],
 
   bootstrap:    [ AppComponent ],

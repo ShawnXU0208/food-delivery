@@ -12,7 +12,7 @@
   </div>
 
   <div clas = "restuarant-open-hours small">
-    open from {{restuarant['open'] | time}} to {{restuarant['close'] | time}}
+    open from {{restuarant['open'][day] | time}} to {{restuarant['close'][day] | time}}
   </div>
   <div class = "restuarant-tags small">
     <span *ngFor = "let tag of restuarant['tags']">

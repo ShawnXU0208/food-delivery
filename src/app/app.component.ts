@@ -30,34 +30,9 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewChecked{
     private users: UserService,
     private pageLayoutService: PageLayoutService
   ){
-    /*
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe((event: NavigationEnd) => {
-        //console.log(event.url);
-        console.log(event.url);
-        switch (true) {
-          case event.url.includes('restaurant-menu'):
-            this.layoutMode = 2;
-            break;
-          
-          default:
-            this.layoutMode = 1;
-            break;
-        }
-      });
-     */
   }
 
   ngOnInit(){
-/*
-    this.subscription = this.globlaDataService.getLayout().subscribe(
-      data =>{
-        this.layoutMode = data.mode;
-        //console.log(this.layoutMode);
-      }
-    );
-*/
     this.urlSubscription = this.pageLayoutService.getCurrentUrl().subscribe(data => {
       this.layoutMode = data.layoutMode;
       console.log(this.layoutMode);
