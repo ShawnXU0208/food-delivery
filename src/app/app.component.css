@@ -10,7 +10,8 @@ p {
 }
 
 .app-left{
-
+  height: 100vh;
+  overflow-y: scroll;
 }
 
 .app-right{
@@ -19,6 +20,7 @@ p {
   border-radius: 20px;
   position: relative;
   top: 2.5vh;
+  overflow-y: scroll;
 }
 
 

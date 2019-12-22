@@ -1,16 +1,4 @@
 
-/*
-.background{
-  width: 100%;
-  padding: 10% 5%;
-  background: rgb(241,205,129);
-  background: linear-gradient(31deg, rgba(241,205,129,1) 39%, rgba(215,151,222,1) 65%);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-}
-*/
 
 .form{
   padding: 10% 13%;
@@ -49,10 +37,10 @@
   position: relative;
   top: 2.5vh;
   border-radius: 10px;
+  overflow-y: scroll;
 }
 
 .owner-form{
-  width: 35%;
   margin: auto;
 }
 
@@ -86,5 +74,81 @@
   color: white;
   font-size: 16px;
   font-weight: 400;
+}
+
+#back-btn, #submit-btn{
+  width: 150px;
+}
+
+#back-btn{
+  background: none;
+  background-color: #34495e;
+}
+
+#submit-btn{
+  background: none;
+  background-color: #e74c3c;
+}
+
+.owner-form .image-selector{
+  width: 250px;
+  height: 150px;
+  margin: auto;
+  display: block;
+  margin-bottom: 40px;
+}
+
+.driver-container .driver-type-btns{
+}
+
+.driver-container .driver-type-btn{
+  font-size: 13px;
+  font-weight: 300px;
+  border: none;
+  background-color: #b8b8b8;
+  width: 150px;
+  height: 30px;
+  color: black;
+}
+
+.driver-container .driver-type-btn.active{
+  color: white;
+  background-color: #5088bf;
+}
+
+.resume-selector, .image-selector{
+  border: 2px dashed #0275d8;
+  height: 180px;
+  width: 100%;
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+
+  background: center center no-repeat;
+}
+
+.resume-selector{
+  background-size: 60px 60px;
+}
+
+.promot-text, .error-text, .file-name{
+  position: absolute;
+  font-size: 12px;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, 0%); 
+}
+
+
+.image-selector.my-invalid{
+  border-color: #d9534f;
+}
+
+
+.resume-selector input, .image-selector input{
+  height: 100%;
+  width: 100;
+  opacity: 0;
+  cursor: pointer;
 }
 

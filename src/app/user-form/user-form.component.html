@@ -1,43 +1,22 @@
 
-  <div class = "form container" *ngIf = "formMode.role !== 'owner'; else ownerForm">
+  <div class = "form container" *ngIf = "formMode.role == 'customer'">
+
+      <!-- display other links(sign in / sign up) at the right corner depends on user's role and action -->
       
-      <div class = "second-link small" *ngIf = "formMode.action === 'register' && formMode.role === 'customer' ">
+      <div class = "second-link small" *ngIf = "formMode.action === 'register' ">
         Already a member?
         <a [routerLink] = "['/', { outlets: {appRight: ['customer-login'] } }]">Log in</a>
+      </div>
+
+      <div class = "second-link small" *ngIf = "formMode.action === 'login' ">
+        Not a member?
+        <a [routerLink] = "['/', { outlets: {appRight: ['customer-register'] } }]">Sign up</a>
       </div>
 
       <form [formGroup] = "userForm" (ngSubmit)="onSubmit(userForm.value)" class = "form-body" novalidate>
 
         <app-form-alerts></app-form-alerts>
 
-        <!-- display other links(sign in / sign up) at the right corner depends on user's role and action -->
-        
-
-        <div class = "second-link small" *ngIf = "formMode.action === 'login' && formMode.role === 'customer'">
-          Not a member?
-          <a [routerLink] = "['/', { outlets: {appRight: ['customer-register'] } }]">Sign up</a>
-        </div>
-        <div class = "second-link small" *ngIf = "formMode.action === 'register' && formMode.role === 'driver' ">
-          Already a driver?
-          <a [routerLink] = "['/', { outlets: {appRight: ['driver-login'] } }]">Log in</a>
-        </div>
-
-        <div class = "second-link small" *ngIf = "formMode.action === 'login' && formMode.role === 'driver'">
-          Not a driver?
-          <a [routerLink] = "['/', { outlets: {appRight: ['driver-register'] } }]">Sign up</a>
-        </div>
-<!--
-        <div class = "second-link small" *ngIf = "formMode.action === 'register' && formMode.role === 'owner' ">
-          Already a restaurant owner?
-          <a [routerLink] = "['/', { outlets: {appRight: ['owner-login'] } }]">Get into your Dashboard</a>
-        </div>
-
-
-        <div class = "second-link small" *ngIf = "formMode.action === 'login' && formMode.role === 'owner'">
-          Not a restaurant owner?
-          <a [routerLink] = "['/', { outlets: {appRight: ['owner-register'] } }]">Sign up</a>
-        </div>
--->
         <!-- display the right form title at the right corner depends on user's role and action -->
 
         <div class = "font-weight-bolder mb-2" style = "font-size: 20px;" *ngIf = "formMode.action === 'register' && formMode.role === 'customer' ">
@@ -45,22 +24,8 @@
         </div>
         <div class = "font-weight-bolder mb-2" style = "font-size: 20px;" *ngIf = "formMode.action === 'login' && formMode.role === 'customer' ">
           Customer Sign In
-        </div>        
-        <div class = "font-weight-bolder mb-2" style = "font-size: 20px;" *ngIf = "formMode.action === 'register' && formMode.role === 'driver' ">
-          Driver Sign Up
-        </div>
-        <div class = "font-weight-bolder mb-2" style = "font-size: 20px;" *ngIf = "formMode.action === 'login' && formMode.role === 'driver' ">
-          Driver Sign In
         </div> 
 
-<!--
-        <div class = "font-weight-bolder mb-2" style = "font-size: 20px;" *ngIf = "formMode.action === 'register' && formMode.role === 'owner' ">
-          Restaurant owner Sign Up
-        </div>
-        <div class = "font-weight-bolder mb-2" style = "font-size: 20px;" *ngIf = "formMode.action === 'login' && formMode.role === 'owner' ">
-          Dashboard Sign In
-        </div>
--->
         <hr>
 
         <!-- display form inputs group -->
@@ -100,32 +65,6 @@
           </div>
         </div>
 
-        <div class = "form-row"  *ngIf = "formMode.action === 'register' && formMode.role === 'driver' ">
-          <div class="form-group col-md-6">
-            <label for="carPlate" class = "font-weight-bold small">Car Plate</label>
-            <input type="text" class="form-control" id="carPlate" formControlName = "carPlate" [ngClass] = "{ 'is-invalid': submitted && userForm.controls.carPlate.errors }">
-            <div class = "invalid-feedback" *ngIf = "submitted && userForm.controls.carPlate.errors">
-              <div *ngIf = "userForm.controls.carPlate.errors.required">Car Plate is required</div>
-            </div>
-          </div>  
-
-          <div class="form-group col-md-6" *ngIf = "formMode.action === 'register' && formMode.role === 'driver' ">
-            <label for="license" class = "font-weight-bold small">Driver License</label>
-            <input type="text" class="form-control" id="license" formControlName = "license" [ngClass] = "{ 'is-invalid': submitted && userForm.controls.license.errors }">
-            <div class = "invalid-feedback" *ngIf = "submitted && userForm.controls.license.errors">
-              <div *ngIf = "userForm.controls.license.errors.required">Driver license is required</div>
-            </div>
-          </div>            
-        </div>   
-<!--
-        <div class="form-group" *ngIf = "formMode.action === 'register' && formMode.role === 'owner' ">
-          <label for="company" class = "font-weight-bold small">Company Name</label>
-          <input type="text" class="form-control" id="company" formControlName = "company" [ngClass] = "{ 'is-invalid': submitted && userForm.controls.company.errors }">
-          <div class = "invalid-feedback" *ngIf = "submitted && userForm.controls.company.errors">
-            <div *ngIf = "userForm.controls.company.errors.required">Company name is required</div>
-          </div>
-        </div>     
--->
         <div class="form-group">
           <label for="password" class = "font-weight-bold small">Password</label>
           <input type="password" class="form-control" id="password" formControlName = "password" [ngClass] = "{ 'is-invalid': submitted && userForm.controls.password.errors }">
@@ -141,11 +80,220 @@
 
   </div>
 
-  <ng-template #ownerForm>
-    <div class = "form container owner-container">
-      <form [formGroup] = "userForm" (ngSubmit)="onSubmit(userForm.value)" class = "form-body owner-form" novalidate>
+
+  <div class = "form container driver-container" *ngIf = "formMode.role == 'driver'">
+
+      <!-- display other links(sign in / sign up) at the right corner depends on user's role and action -->
+      
+      <div class = "second-link small" *ngIf = "formMode.action === 'register' ">
+        Already a driver?
+        <a [routerLink] = "['/', { outlets: {appRight: ['driver-login'] } }]">Log in</a>
+      </div>
+
+      <div class = "second-link small" *ngIf = "formMode.action === 'login' ">
+        Not a driver?
+        <a [routerLink] = "['/', { outlets: {appRight: ['driver-register'] } }]">Sign up</a>
+        </div>      
+
+      <form [formGroup] = "userForm" (ngSubmit)="onSubmit(userForm.value)" class = "form-body" novalidate>
+
         <app-form-alerts></app-form-alerts>
 
+        <!-- display the right form title at the right corner depends on user's role and action -->
+       
+ 
+        <div class = "font-weight-bolder mb-2" style = "font-size: 20px;" *ngIf = "formMode.action === 'register' ">
+          司机申请
+        </div>
+        <div class = "font-weight-bolder mb-2" style = "font-size: 20px;" *ngIf = "formMode.action === 'login' ">
+          司机登录
+        </div> 
+        <hr>
+
+        <div *ngIf = "formMode.action === 'login' ">
+          <div class="form-group">
+            <label for="email" class = "font-weight-bold small">Email Address</label>
+            <input type="email" class="form-control" id="email" formControlName = "email" [ngClass] = "{ 'is-invalid': submitted && userForm.controls.email.errors }">
+            <div class = "invalid-feedback" *ngIf = "submitted && userForm.controls.email.errors">
+              <div *ngIf = "userForm.controls.email.errors.required">Eamil address is required</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="password" class = "font-weight-bold small">Password</label>
+            <input type="password" class="form-control" id="password" formControlName = "password" [ngClass] = "{ 'is-invalid': submitted && userForm.controls.password.errors }">
+            <div class = "invalid-feedback" *ngIf = "submitted && userForm.controls.password.errors">
+              <div *ngIf = "userForm.controls.password.errors.required">Password is required</div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf = "formMode.action === 'register' ">
+          <div class = "driver-type-btns">
+            <button class = "driver-type-btn active" type = "button" (click) = "driverTypeChange()" [ngClass] = "{'active':driverType === 'part-time'}">共享司机申请</button>
+            <button class = "driver-type-btn ml-3" type = "button" (click) = "driverTypeChange()" [ngClass] = "{'active':driverType === 'full-time'}">全职送货申请</button>
+          </div>
+
+          <!-- display form inputs group -->
+          <div class = "mt-3" *ngIf = "driverType === 'part-time' ">
+            <div>
+              <div class="form-group">
+                <label for="email" class = "font-weight-bold small">账号邮箱* (请在www.vdot.co.nz注册)</label>
+                <input type="text" class="form-control" id="email" formControlName = "email" [ngClass] = "{ 'is-invalid': submitted && userForm.controls.email.errors }" />
+                <div class = "invalid-feedback" *ngIf = "submitted && userForm.controls.email.errors">
+                  <div *ngIf = "userForm.controls.email.errors.required">请输入正确的邮箱账号</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group" *ngIf = "formMode.action === 'register'">
+              <label for="car-plate" class = "font-weight-bold small">车牌号*</label>
+              <input type="text" class="form-control" id="car-plate" formControlName = "carPlate" [ngClass] = "{ 'is-invalid': submitted && userForm.controls.carPlate.errors }">
+              <div class = "invalid-feedback" *ngIf = "submitted && userForm.controls.carPlate.errors">
+                <div *ngIf = "userForm.controls.carPlate.errors.required">请输入正确的车牌号</div>
+              </div>
+            </div>
+
+            <div class="form-group" *ngIf = "formMode.action === 'register'">
+              <label for="car-insurance" class = "font-weight-bold small">车保险号</label>
+              <input type="text" class="form-control" id="car-insurance" formControlName = "carInsurance" [ngClass] = "{ 'is-invalid': submitted && userForm.controls.carInsurance.errors }">
+            </div>
+
+            <div class="form-group" *ngIf = "formMode.action === 'register'">
+              <label for="bank-account" class = "font-weight-bold small">银行账号*</label>
+              <input type="text" class="form-control" id="bank-account" formControlName = "bankAccount" [ngClass] = "{ 'is-invalid': submitted && userForm.controls.bankAccount.errors }">
+              <div class = "invalid-feedback" *ngIf = "submitted && userForm.controls.bankAccount.errors">
+                <div *ngIf = "userForm.controls.bankAccount.errors.required">请输入正确的银行账号</div>
+              </div>
+            </div>
+
+            <label for="passport-upload" class = "font-weight-bold small">护照首页*</label>
+            <div class = "form-group passport-selector image-selector" [ngClass] = "{ 'my-invalid': submitted && !passportValid }" [ngStyle] = "{'background-image':'url(' + passportUrl + ')', 'background-size':!passportValid? '60px 60px': '95% 90%'}">
+
+              <input type = "file" id = "passport-upload" formControlName = "passportUpload" (change) = "fileProgress($event, 'passport')" />
+
+              <div class = "promot-text text-primary" *ngIf = "!passport">请上传图片</div>
+              <div class = "error-text text-danger" *ngIf = "passport && !passportValid">请上传正确的图片格式</div>
+            </div>
+
+            <label for="visa-upload" class = "font-weight-bold small">签证页*</label>
+            <div class = "form-group visa-selector image-selector" [ngClass] = "{ 'my-invalid': submitted && !visaValid }" [ngStyle] = "{'background-image':'url(' + visaUrl + ')', 'background-size':!visaValid? '60px 60px': '95% 90%'}">
+
+              <input type = "file" id = "visa-upload" formControlName = "visaUpload" (change) = "fileProgress($event, 'visa')" />
+
+              <div class = "promot-text text-primary" *ngIf = "!visa">请上传图片</div>
+              <div class = "error-text text-danger" *ngIf = "visa && !visaValid">请上传正确的图片格式</div>
+            </div>
+
+            <label for="license-front-upload" class = "font-weight-bold small">驾照正面*</label>
+            <div class = "form-group license-front-selector image-selector" [ngClass] = "{ 'my-invalid': submitted && !licenseFrontValid }" [ngStyle] = "{'background-image':'url(' + licenseFrontUrl + ')', 'background-size':!licenseFrontValid? '60px 60px': '95% 90%'}">
+
+              <input type = "file" id = "license-front-upload" formControlName = "licenseFrontUpload" (change) = "fileProgress($event, 'licenseFront')" />
+
+              <div class = "promot-text text-primary" *ngIf = "!licenseFront">请上传图片</div>
+              <div class = "error-text text-danger" *ngIf = "licenseFront && !licenseFrontValid">请上传正确的图片格式</div>
+            </div>
+
+            <label for="license-back-upload" class = "font-weight-bold small">驾照反面*</label>
+            <div class = "form-group license-back-selector image-selector" [ngClass] = "{ 'my-invalid': submitted && !licenseBackValid }" [ngStyle] = "{'background-image':'url(' + licenseBackUrl + ')', 'background-size':!licenseBackValid? '60px 60px': '95% 90%'}">
+
+              <input type = "file" id = "license-back-upload" formControlName = "licenseBackUpload" (change) = "fileProgress($event, 'licenseBack')" />
+
+              <div class = "promot-text text-primary" *ngIf = "!licenseBack">请上传图片</div>
+              <div class = "error-text text-danger" *ngIf = "licenseBack && !licenseBackValid">请上传正确的图片格式</div>
+            </div>
+          </div>
+
+          <div class = "mt-3" *ngIf = "driverType === 'full-time' ">
+
+            <div>
+              <div class="form-group">
+                <label for="email" class = "font-weight-bold small">账号邮箱* (请在www.vdot.co.nz注册)</label>
+                <input type="text" class="form-control" id="email" formControlName = "email" [ngClass] = "{ 'is-invalid': submitted && userForm.controls.email.errors }" />
+                <div class = "invalid-feedback" *ngIf = "submitted && userForm.controls.email.errors">
+                  <div *ngIf = "userForm.controls.email.errors.required">请输入正确的邮箱账号</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group" *ngIf = "formMode.action === 'register'">
+              <label for="bank-account" class = "font-weight-bold small">银行账号*</label>
+              <input type="text" class="form-control" id="bank-account" formControlName = "bankAccount" [ngClass] = "{ 'is-invalid': submitted && userForm.controls.bankAccount.errors }">
+              <div class = "invalid-feedback" *ngIf = "submitted && userForm.controls.bankAccount.errors">
+                <div *ngIf = "userForm.controls.bankAccount.errors.required">请输入正确的银行账号</div>
+              </div>
+            </div>
+
+            <div class="form-group" *ngIf = "formMode.action === 'register'">
+              <label for="ird" class = "font-weight-bold small">IRD*</label>
+              <input type="text" class="form-control" id="ird" formControlName = "ird" [ngClass] = "{ 'is-invalid': submitted && userForm.controls.ird.errors }">
+              <div class = "invalid-feedback" *ngIf = "submitted && userForm.controls.ird.errors">
+                <div *ngIf = "userForm.controls.ird.errors.required">请输入正确的 IRD Number</div>
+              </div>
+            </div>
+
+            <label for="resume-upload" class = "font-weight-bold small">简历*</label>
+            <div class = "form-group resume-selector file-selector" [ngClass] = "{ 'my-invalid': submitted && !resumeValid }" [ngStyle] = "{'background-image':'url(' + resumeUrl + ')'}">
+
+              <input type = "file" id = "resume-upload" formControlName = "resumeUpload" (change) = "fileProgress($event, 'resume')" />
+
+              <div class = "promot-text text-primary" *ngIf = "!resume">请上传简历文件</div>
+              <div class = "error-text text-danger" *ngIf = "resume && !resumeValid">仅支持 pdf, doc, odf, txt</div>
+              <div class = "file-name text-success" *ngIf = "resume && resumeValid">{{resumeName}}</div>
+            </div>
+
+            <label for="passport-upload" class = "font-weight-bold small">护照首页*</label>
+            <div class = "form-group passport-selector image-selector" [ngClass] = "{ 'my-invalid': submitted && !passportValid }" [ngStyle] = "{'background-image':'url(' + passportUrl + ')', 'background-size':!passportValid? '60px 60px': '95% 90%'}">
+
+              <input type = "file" id = "passport-upload" formControlName = "passportUpload" (change) = "fileProgress($event, 'passport')" />
+
+              <div class = "promot-text text-primary" *ngIf = "!passport">请上传图片</div>
+              <div class = "error-text text-danger" *ngIf = "passport && !passportValid">请上传正确的图片格式</div>
+            </div>
+
+            <label for="visa-upload" class = "font-weight-bold small">签证页*</label>
+            <div class = "form-group visa-selector image-selector" [ngClass] = "{ 'my-invalid': submitted && !visaValid }" [ngStyle] = "{'background-image':'url(' + visaUrl + ')', 'background-size':!visaValid? '60px 60px': '95% 90%'}">
+
+              <input type = "file" id = "visa-upload" formControlName = "visaUpload" (change) = "fileProgress($event, 'visa')" />
+
+              <div class = "promot-text text-primary" *ngIf = "!visa">请上传图片</div>
+              <div class = "error-text text-danger" *ngIf = "visa && !visaValid">请上传正确的图片格式</div>
+            </div>
+
+            <label for="license-front-upload" class = "font-weight-bold small">驾照正面*</label>
+            <div class = "form-group license-front-selector image-selector" [ngClass] = "{ 'my-invalid': submitted && !licenseFrontValid }" [ngStyle] = "{'background-image':'url(' + licenseFrontUrl + ')', 'background-size':!licenseFrontValid? '60px 60px': '95% 90%'}">
+
+              <input type = "file" id = "license-front-upload" formControlName = "licenseFrontUpload" (change) = "fileProgress($event, 'licenseFront')" />
+
+              <div class = "promot-text text-primary" *ngIf = "!licenseFront">请上传图片</div>
+              <div class = "error-text text-danger" *ngIf = "licenseFront && !licenseFrontValid">请上传正确的图片格式</div>
+            </div>
+
+            <label for="license-back-upload" class = "font-weight-bold small">驾照反面*</label>
+            <div class = "form-group license-back-selector image-selector" [ngClass] = "{ 'my-invalid': submitted && !licenseBackValid }" [ngStyle] = "{'background-image':'url(' + licenseBackUrl + ')', 'background-size':!licenseBackValid? '60px 60px': '95% 90%'}">
+
+              <input type = "file" id = "license-back-upload" formControlName = "licenseBackUpload" (change) = "fileProgress($event, 'licenseBack')" />
+
+              <div class = "promot-text text-primary" *ngIf = "!licenseBack">请上传图片</div>
+              <div class = "error-text text-danger" *ngIf = "licenseBack && !licenseBackValid">请上传正确的图片格式</div>
+            </div>
+
+          </div>
+        </div>
+
+
+        <button type="submit" class="btn btn-danger mt-2" *ngIf = "formMode.action === 'register'">提交申请</button>
+        <button type="submit" class="btn btn-danger mt-5" *ngIf = "formMode.action === 'login'">Sign In</button>
+      </form>
+
+  </div>
+
+
+  <div class = "form container owner-container" *ngIf = "formMode.role == 'owner'">
+    <form [formGroup] = "userForm" (ngSubmit)="onSubmit(userForm.value)" class = "form-body owner-form" novalidate [ngStyle] = "{'width': ownerRegister === 'owner-info'? '35%':'70%'}">
+      <app-form-alerts></app-form-alerts>
+
+      <div *ngIf = "ownerRegister === 'owner-info' ">
         <div class = "logo">
           <img src = "../../assets/images/trello.png">
         </div>
@@ -188,16 +336,133 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <input type="password" class="form-control" id="password" formControlName = "password" [ngClass] = "{ 'is-invalid': submitted && userForm.controls.password.errors }" placeholder="Password">
-          <div class = "invalid-feedback" *ngIf = "submitted && userForm.controls.password.errors">
-            <div *ngIf = "userForm.controls.password.errors.required">Password is required</div>
+        <div class="form-group" *ngIf = "formMode.action === 'register'">
+          <input type="text" class="form-control" id="mobile" formControlName = "mobile" [ngClass] = "{ 'is-invalid': submitted && userForm.controls.mobile.errors }" placeholder="Mobile">
+          <div class = "invalid-feedback" *ngIf = "submitted && userForm.controls.mobile.errors">
+            <div *ngIf = "userForm.controls.mobile.errors.required">Mobile number is required</div>
           </div>
         </div>
 
-        <button type="submit" *ngIf = "formMode.action === 'register'">Register</button>
-        <button type="submit" *ngIf = "formMode.action === 'login'">Log In</button>
+        <div class="form-group" *ngIf = "formMode.action === 'register'">
+          <input type="text" class="form-control" id="deduction" formControlName = "deduction" [ngClass] = "{ 'is-invalid': submitted && userForm.controls.deduction.errors }" placeholder="Deduction">
+          <div class = "invalid-feedback" *ngIf = "submitted && userForm.controls.deduction.errors">
+            <div *ngIf = "userForm.controls.deduction.errors.required">Deduction is required</div>
+          </div>
+        </div>
 
-      </form>   
-    </div>
-  </ng-template>
+        <div class="form-group" *ngIf = "formMode.action === 'login'">
+          <input type="password" class="form-control" id="password" formControlName = "password" [ngClass] = "{ 'is-invalid': submitted && userForm.controls.password.errors }" placeholder="Password">
+          <div class = "invalid-feedback" *ngIf = "submitted && userForm.controls.password.errors">
+            <div *ngIf = "userForm.controls.password.errors.required">Deduction is required</div>
+          </div>
+        </div>
+        <button type="button" *ngIf = "formMode.action === 'register'" (click) = "ownerRegisterPageChange()">Next</button>
+      </div>
+
+      <div *ngIf = "ownerRegister === 'company-info' ">
+
+        <div class = "container">
+
+          <div class = "form-group logo-selector image-selector" [ngClass] = "{ 'my-invalid': submitted && !logoValid }" [ngStyle] = "{'background-image':'url(' + logoUrl + ')', 'background-size':!logoValid? '60px 60px': '95% 90%'}">
+
+            <input type = "file" id = "logo-upload" formControlName = "logoUpload" (change) = "fileProgress($event, 'logo')" />
+
+            <div class = "promot-text text-primary" *ngIf = "!logo">logo upload</div>
+            <div class = "error-text text-danger" *ngIf = "logo && !logoValid">only support pdf, jpg, png</div>
+          </div> 
+
+          <div class = "row">
+            <div class = "col-12 col-md-6">
+
+              <div class = "form-group">
+                <input type="text" class="form-control" id="trading-name" formControlName = "tradingName" [ngClass] = "{ 'is-invalid': submitted && userForm.controls.tradingName.errors }" placeholder="trading name">               
+              </div> 
+
+              <div class = "form-group">
+                <input type="text" class="form-control" id="address" formControlName = "address" [ngClass] = "{ 'is-invalid': submitted && userForm.controls.address.errors }" placeholder="address/building">
+                <div class = "invalid-feedback" *ngIf = "submitted && userForm.controls.address.errors">
+                  <div *ngIf = "userForm.controls.address.errors.required">address is required</div>
+                </div>                
+              </div>   
+
+              <div class = "form-group">
+                <input type="text" class="form-control" id="suburb" formControlName = "suburb" [ngClass] = "{ 'is-invalid': submitted && userForm.controls.suburb.errors }" placeholder="suburb">
+                <div class = "invalid-feedback" *ngIf = "submitted && userForm.controls.suburb.errors">
+                  <div *ngIf = "userForm.controls.suburb.errors.required">suburb is required</div>
+                </div>                
+              </div>  
+
+              <div class = 'row'>
+                <div class = "form-group col-12 col-md-8">
+                  <input type="text" class="form-control" id="city" formControlName = "city" [ngClass] = "{ 'is-invalid': submitted && userForm.controls.city.errors }" placeholder="city">
+                  <div class = "invalid-feedback" *ngIf = "submitted && userForm.controls.city.errors">
+                    <div *ngIf = "userForm.controls.city.errors.required">city is required</div>
+                  </div>                
+                </div>  
+
+                <div class = "form-group col-12 col-md-4">
+                  <input type="text" class="form-control" id="postcode" formControlName = "postcode" [ngClass] = "{ 'is-invalid': submitted && userForm.controls.postcode.errors }" placeholder="postcode">
+                  <div class = "invalid-feedback" *ngIf = "submitted && userForm.controls.postcode.errors">
+                    <div *ngIf = "userForm.controls.postcode.errors.required">postcode is required</div>
+                  </div>                
+                </div>  
+              </div>
+            </div>
+
+            <div class = "col-12 col-md-6">
+
+              <div class = "form-group">
+                <input type="text" class="form-control" id="contact-number" formControlName = "contactNumber" [ngClass] = "{ 'is-invalid': submitted && userForm.controls.contactNumber.errors }" placeholder="contact number">
+                <div class = "invalid-feedback" *ngIf = "submitted && userForm.controls.contactNumber.errors">
+                  <div *ngIf = "userForm.controls.contactNumber.errors.required">contact number is required</div>
+                </div>                
+              </div> 
+
+              <div class = "form-group">
+                <input type="text" class="form-control" id="bank-account-name" formControlName = "bankAccountName" [ngClass] = "{ 'is-invalid': submitted && userForm.controls.bankAccountName.errors }" placeholder="bank account name">
+                <div class = "invalid-feedback" *ngIf = "submitted && userForm.controls.bankAccountName.errors">
+                  <div *ngIf = "userForm.controls.bankAccountName.errors.required">bank account name is required</div>
+                </div>                
+              </div> 
+
+              <div class = "form-group">
+                <input type="text" class="form-control" id="bank-account-number" formControlName = "bankAccountNumber" [ngClass] = "{ 'is-invalid': submitted && userForm.controls.bankAccountNumber.errors }" placeholder="bank account number">
+                <div class = "invalid-feedback" *ngIf = "submitted && userForm.controls.bankAccountNumber.errors">
+                  <div *ngIf = "userForm.controls.bankAccountNumber.errors.required">bank account number is required</div>
+                </div>                
+              </div> 
+
+              <div class = "row">
+                <div class = "form-group col-12 col-md-6">
+                  <input type="text" class="form-control" id="gst" formControlName = "gst" [ngClass] = "{ 'is-invalid': submitted && userForm.controls.gst.errors }" placeholder="gst number">
+                  <div class = "invalid-feedback" *ngIf = "submitted && userForm.controls.gst.errors">
+                    <div *ngIf = "userForm.controls.gst.errors.required">gst number is required</div>
+                  </div>                
+                </div> 
+
+                <div class = "form-group col-12 col-md-6">
+                  <input type="text" class="form-control" id="operation" formControlName = "operationHour" [ngClass] = "{ 'is-invalid': submitted && userForm.controls.operationHour.errors }" placeholder="operation hour">
+                  <div class = "invalid-feedback" *ngIf = "submitted && userForm.controls.operationHour.errors">
+                    <div *ngIf = "userForm.controls.operationHour.errors.required">operation hour is required</div>
+                  </div>                
+                </div>                  
+              </div>
+            </div>
+          </div>
+
+          <div style = "display: flex; flex-direction: row; justify-content: space-between;">
+            <button id = "back-btn" type="button" *ngIf = "formMode.action === 'register'" (click) = "ownerRegisterPageChange()">Back</button>
+            <button id = "submit-btn" type="submit" *ngIf = "formMode.action === 'register' && ownerRegister === 'company-info' ">Submit</button>
+          </div> 
+
+        </div>
+
+
+      </div>
+
+
+      <button type="submit" *ngIf = "formMode.action === 'login'">Log In</button>
+
+    </form>   
+  </div>
+
